@@ -1,24 +1,18 @@
 fieldset{
-    width: 400px;
-    margin-left: 400px;
+    width: 500px;    
 }
 
-.groupControl{
-    margin-bottom: 10px;
-}
+
 
 .groupControl label{  
     display:inline-block;  
-    width: 110px;
+    width: 150px;
+}
+
+.groupControl input{
+    width: 345px;
 }
 
 button{
     float: right;
 }
-
-
-.column1, .column2, .column3, .column4{
-    display: inline-block;
-    width: 100px;    
-}
-
