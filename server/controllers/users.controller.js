@@ -5,7 +5,15 @@ var userService = require('../services/user.service.js');
 
 // routes
 router.post('/authenticate', authenticate);
-router.post('/register', register);
+router.post('/', (req, res) => {
+    userService.create(req.body)
+        .then(function () {
+            res.json('success');
+        })
+        .catch(function (err) {
+            res.status(400).json(err);
+        });
+});
 router.get('/', getAll);
 router.get('/current', getCurrent);
 router.put('/:_id', update);
@@ -23,16 +31,6 @@ function authenticate(req, res) {
                 // authentication failed
                 res.status(400).send('Username or password is incorrect');
             }
-        })
-        .catch(function (err) {
-            res.status(400).send(err);
-        });
-}
-
-function register(req, res) {
-    userService.create(req.body)
-        .then(function () {
-            res.json('success');
         })
         .catch(function (err) {
             res.status(400).send(err);
