@@ -6,12 +6,9 @@ import { RestaurantsearchComponent } from './restaurantsearch/restaurantsearch.c
 const MAIN_ROUTES: Routes = [
     {path:"", redirectTo:'home', pathMatch:'full'},
     {path:"home", component:HomeComponent},
-<<<<<<< HEAD
-    {path:"user/:id", component:UserComponent}
-=======
+    {path:"user/:id", component:UserComponent},
     {path:"search", component: RestaurantsearchComponent},
     {path:"user/:id?", component:UserComponent}
->>>>>>> bc0cf6ff38c98385c748737a7aa103f2302790c8
 ]
 
 export const mainRoutes = RouterModule.forRoot(MAIN_ROUTES);    
