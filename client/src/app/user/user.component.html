@@ -9,23 +9,32 @@ Description: Template for UserComponent.
     <div class="form-group">
         <label for="firstName">First Name</label>
         <input type="text" formControlName="firstName" class="form-control" name="firstName" id="firstName">
-        <span class="alert alert-danger" *ngIf="!userForm.controls['firstName'].valid" />
+        <div class="error" *ngIf="!userForm.controls['firstName'].valid">Required</div>
     </div>
     <div class="form-group">
         <label for="lastName">Last Name</label>
         <input type="text" formControlName="lastName" class="form-control" name="lastName" id="lastName">
+        <div class="error" *ngIf="!userForm.controls['lastName'].valid">Required</div>
     </div>
     <div class="form-group">
         <label for="username">User Name</label>
         <input type="text" formControlName="username" class="form-control" name="username" id="username">
+        <div class="error" *ngIf="!userForm.controls['username'].valid">Required</div>
     </div>
     <div class="form-group">
         <label for="password">Password</label>
         <input type="password" formControlName="password" class="form-control" name="password" id="password">
+        <div class="error" *ngIf="!userForm.controls['password'].valid">Required</div>
     </div>
     <div class="form-group">
         <label for="cof">Confirm Password</label>
         <input type="password" formControlName="confirmPassword" class="form-control" name="confirmPassword" id="confirmPassword">
+        <div class="error" *ngIf="!userForm.controls['confirmPassword'].valid">Required</div>
+    </div>
+    <div class="form-group">
+        <label for="cof">Email</label>
+        <input type="text" formControlName="email" class="form-control" name="email" id="email">
+        <div class="error" *ngIf="!userForm.controls['email'].valid">Required and is email.</div>
     </div>
     <div class="form-group">
         <label for="role">Role</label>
@@ -33,8 +42,9 @@ Description: Template for UserComponent.
             <option value="guest">Guest</option>
             <option value="admin">Admin</option>
         </select>
+        <div class="error" *ngIf="!userForm.controls['role'].valid">Required</div>
     </div>
     <div class="form-group">
-        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="submit" [disabled]="!userForm.valid" class="btn btn-primary">Save</button>
     </div>
 </form>

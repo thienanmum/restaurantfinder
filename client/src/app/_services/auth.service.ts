@@ -24,8 +24,7 @@ export class AuthService {
 
     login(credentials:Credentials) {
         this.http.post(appConfig + 'user/authenticate', credentials)
-            .map(res => res.json())
-            .subscribe(data => localStorage.setItem('id_token', data), 
+            .subscribe(data => localStorage.setItem('id_token', JSON.stringify(data)), 
                 error => console.log(error));
     }
 
@@ -34,6 +33,6 @@ export class AuthService {
     }
 
     logout() {
-        localStorage.removeItem('id_tokem');
+        localStorage.removeItem('id_token');
     }
 }
