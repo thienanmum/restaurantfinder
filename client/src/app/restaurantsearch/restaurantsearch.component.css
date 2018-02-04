@@ -1,5 +1,6 @@
 fieldset{
-    width: 500px;    
+    width: 500px;     
+     margin:auto;  
 }
 
 
@@ -15,4 +16,14 @@ fieldset{
 
 button{
     float: right;
+}
+
+.res-list{
+    margin-top: 30px;
+}
+
+input.form-control{
+    background-color:transparent;
+    border: 0;
+    font-size: 1em;
 }
