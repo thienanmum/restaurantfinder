@@ -10,10 +10,7 @@ export class SearchService {
   }
 
   getRestaurants(){
-    this.http.get("http://localhost:1234/search")    
-    .subscribe(res => {
-      console.log(res);
-    })
+    return this.http.get("http://localhost:3000/restaurant/search"); 
     
   }
 

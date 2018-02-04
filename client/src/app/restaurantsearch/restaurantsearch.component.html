@@ -1,5 +1,5 @@
 
-<form>
+<form #f="ngForm" (ngSubmit)="onSubmit()">
   <fieldset>
     <legend>Search</legend>
     <div class="groupControl">
@@ -16,11 +16,10 @@
   </fieldset>
 
   <div>
-    <div class="row">
-      <div class="column1">res.name</div>
-      <div class="column2">res.address</div>
-      <div class="column3">res.dishes</div>
-      <div class="column4">res.distance</div>
+    <div class="row" *ngFor="let res of restaurants">
+      <div class="column1"><input [(ngModel)]="res.name" [ngModelOptions]="{standalone: true}"/></div>
+      <div class="column2"><input [(ngModel)]="res.address" [ngModelOptions]="{standalone: true}"/></div>
+      <div class="column3"><input [(ngModel)]="res.dishes" [ngModelOptions]="{standalone: true}"/></div>      
     </div>
   </div>
 </form>

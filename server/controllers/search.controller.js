@@ -6,14 +6,19 @@ var searchService = require("../services/search.service.js");
 
 var router = express.Router();
 
-router.get("/search", getRestaurants);
+router.get("/search", getAllRestaurants);
 
-function getRestaurants(request, response){
+function getAllRestaurants(request, response){      
     
-    //var result = searchService.getRestaurants(request.body.dishes, request.body.location);
-    var result = searchService.getAllRestaurants();
-    response.send(result);  
+    searchService.getAllRestaurants().then(docs => {
+        response.send(docs);        
+    })
+}
 
+function getRestaurants(req, res){
+    searchService.getRestaurants(request.body.dishes, request.body.location).then(docs =>{
+        response.send(docs);
+    })
 }
 
 module.exports = router;
