@@ -1,33 +1,40 @@
+<!--
+File: user.component.html
+File Created: 02/03/2018
+Author: annguyen
+Description: Template for UserComponent.
+-->
 <form class="container" [formGroup]="userForm" (ngSubmit)="onSubmit()">
-  <input type="hidden" formControlName="_id">
-  <div class="form-group">
-    <label for="firstName">First Name</label>
-    <input type="text" formControlName="firstName" class="form-control" name="firstName" id="firstName">
-  </div>
-  <div class="form-group">
-    <label for="lastName">Last Name</label>
-    <input type="text" formControlName="lastName" class="form-control" name="lastName" id="lastName">
-  </div>
-  <div class="form-group">
-    <label for="username">User Name</label>
-    <input type="text" formControlName="username" class="form-control" name="username" id="username">
-  </div>
-  <div class="form-group">
-    <label for="password">Password</label>
-    <input type="password" formControlName="password" class="form-control" name="password" id="password">
-  </div>
-  <div class="form-group">
-    <label for="cof">Confirm Password</label>
-    <input type="password" formControlName="confirmPassword" class="form-control" name="confirmPassword" id="confirmPassword">
-  </div>
-  <div class="form-group">
-    <label for="role">Role</label>
-    <select formControlName="role" class="form-control" name="role" id="role">
-      <option value="guest">Guest</option>
-      <option value="admin">Admin</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <button type="submit" class="btn btn-primary">Save</button>
-  </div>
+    <input type="hidden" formControlName="_id">
+    <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input type="text" formControlName="firstName" class="form-control" name="firstName" id="firstName">
+        <span class="alert alert-danger" *ngIf="!userForm.controls['firstName'].valid" />
+    </div>
+    <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input type="text" formControlName="lastName" class="form-control" name="lastName" id="lastName">
+    </div>
+    <div class="form-group">
+        <label for="username">User Name</label>
+        <input type="text" formControlName="username" class="form-control" name="username" id="username">
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" formControlName="password" class="form-control" name="password" id="password">
+    </div>
+    <div class="form-group">
+        <label for="cof">Confirm Password</label>
+        <input type="password" formControlName="confirmPassword" class="form-control" name="confirmPassword" id="confirmPassword">
+    </div>
+    <div class="form-group">
+        <label for="role">Role</label>
+        <select formControlName="role" class="form-control" name="role" id="role">
+            <option value="guest">Guest</option>
+            <option value="admin">Admin</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Save</button>
+    </div>
 </form>
