@@ -24,15 +24,17 @@ module.exports = router;
 function authenticate(req, res) {
     userService.authenticate(req.body.username, req.body.password)
         .then(function (user) {
+            console.log(user);
             if (user) {
                 // authentication successful
-                res.send(user);
+                res.send(user);                
             } else {
                 // authentication failed
                 res.status(400).send('Username or password is incorrect');
             }
         })
         .catch(function (err) {
+            console.log(err);
             res.status(400).send(err);
         });
 }

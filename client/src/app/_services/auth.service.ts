@@ -12,6 +12,7 @@ import 'rxjs/add/operator/map';
 
 import { User } from '../_models/user';
 import { appConfig } from '../app.config';
+import { Router } from '@angular/router';
 
 
 interface Credentials {username: string, password: string}
@@ -20,11 +21,16 @@ interface Credentials {username: string, password: string}
 export class AuthService {
     currentUser:User;
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient, private router: Router) { }
 
     login(credentials:Credentials) {
-        this.http.post(appConfig + 'user/authenticate', credentials)
-            .subscribe(data => localStorage.setItem('id_token', JSON.stringify(data)), 
+        this.http.post(appConfig.apiUrl + 'users/authenticate', credentials)
+            .subscribe(data => { 
+                const token = JSON.stringify(data);
+                localStorage.setItem('id_token', token);
+                console.log("Login successfully: " + token);
+                this.router.navigate(['home']);
+            }, 
                 error => console.log(error));
     }
 

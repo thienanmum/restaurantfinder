@@ -1,9 +1,23 @@
-<nav class="navbar navbar-default">
-  <a class="navbar-brand" [routerLink]="['home']">Home</a>
-  <a class="navbar-brand" [routerLink]="['user/0']">User</a>
-  <a class="navbar-brand" [routerLink]="['restaurant']">Restaurant</a>
-  <a class="navbar-brand" [routerLink]="['search']">Search</a>
+<!-- <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="#">Features</a>
+            <a class="nav-item nav-link" href="#">Pricing</a>
+            <a class="nav-item nav-link disabled" href="#">Disabled</a>
+          </div>
+      </nav> -->
+
+<nav class="navbar navbar-toggleable-sm navbar-light bg-faded">
+    <span class="navbar-text">
+        Welcome
+    </span>
+    <div class="navbar-nav">
+        <a class="nav-item nav-link active" [routerLink]="['home']">Home</a>
+        <a class="nav-item nav-link active" [routerLink]="['user/0']">User</a>
+        <a class="nav-item nav-link active" [routerLink]="['restaurant']">Restaurant</a>
+        <a class="nav-item nav-link active" [routerLink]="['search']">Search</a>
+    </div>
 </nav>
 <div class="container">
-  <router-outlet></router-outlet>
+    <router-outlet></router-outlet>
 </div>
