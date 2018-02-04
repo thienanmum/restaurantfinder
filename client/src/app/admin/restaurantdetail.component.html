@@ -1,33 +1,35 @@
-<form>
+<form [formGroup]="myForm">
   <div class="form-row">
     <div class="col-md-4 mb-3">
       <label for="validationDefault01">Restaurant Name</label>
-      <input type="text" class="form-control" id="validationDefault01" required>
+      <input type="text" class="form-control"  formControlName="name">
     </div>
 
   </div>
   <div class="form-row">
     <div class="col-md-6 mb-3">
-      <label for="validationDefault03">Street</label>
-      <input type="text" class="form-control" id="validationDefault03" required>
+      <label >Street</label>
+      <input type="text" class="form-control"  formControlName="street">
     </div>
     <div class="col-md-6 mb-3">
-      <label for="validationDefault03">City</label>
-      <input type="text" class="form-control" id="validationDefault03" required>
+      <label>City</label>
+      <input type="text" class="form-control" formControlName="city">
     </div>
     <div class="col-md-3 mb-3">
-      <label for="validationDefault04">State</label>
-      <input type="text" class="form-control" id="validationDefault04" required>
+      <label>State</label>
+      <input type="text" class="form-control"  formControlName="state">
     </div>
     <div class="col-md-3 mb-3">
-      <label for="validationDefault05">Zip</label>
-      <input type="text" class="form-control" id="validationDefault05" required>
+      <label>Zip</label>
+      <input type="text" class="form-control" formControlName="zip">
     </div>
   </div>
   <div class="form-group">
-    <label for="exampleFormControlTextarea1">Restaurant detail</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+    <label>Main dishes serve (enter separately by comma)</label>
+    <textarea class="form-control" rows="5" formControlName="detail"></textarea>
   </div>
-  <button class="btn btn-primary">Save</button>
-  <button class="btn btn-primary">Delete</button>
+  <div class="form-group">
+  <button type="button" class="btn btn-primary" [disabled]="!myForm.valid">Save</button>
+  <button type="button" class="btn btn-primary" [disabled]="!myForm.valid">Delete</button>
+  </div>
 </form>
