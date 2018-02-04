@@ -5,10 +5,10 @@ const mongoose = require("mongoose")
 var restaurantSchema = new mongoose.Schema({
     id: String,
     name: String,
-    address:{street:string, city:string, state:string, zip:string},
+    address:{street: String, city: String, state: String, zip: String},
     location: [Number],
     dishes: [String],
-    rating:string,
+    rating: String,
     reviews: [String]
 }, {collection: "restaurants"})
 
