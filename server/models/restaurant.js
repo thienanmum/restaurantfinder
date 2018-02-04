@@ -8,6 +8,6 @@ var restaurantSchema = new mongoose.Schema({
     location: [Number],
     dishes: [String],
     reviews: [String]
-})
+}, {collection: "restaurants"})
 
 module.exports = mongoose.model("Restaurant", restaurantSchema);
