@@ -3,18 +3,15 @@
   <fieldset>
     <legend>Search</legend>
     <div class="groupControl">
-      <label>Dish</label>
-      <input type="text"/>
+      <label>Dishes</label>
+      <input type="text" name="searchDishes" [(ngModel)]="searchDishes"/>
     </div>
     <div class="groupControl">
-        <label>Current location</label>
-        <input value ="1000 N 4th Street"/>
-    </div>
-      
-        
+      <label>Current location</label>
+      <input value ="1000 N 4th Street" name="searchLocation" [(ngModel)]="searchLocation"/>
+    </div>    
     <button type="submit">Search</button>
   </fieldset>
-
   
   <div class="res-list">
       <div class="row" style="background-color:lavenderblush; text-align:center">
@@ -23,9 +20,9 @@
           <div class="col-sm-4">Dishes</div>      
         </div>
     <div class="row" *ngFor="let res of restaurants" style="background-color:lavender;">
-      <div class="col-sm-4" ><input class="form-control" readonly [(ngModel)]="res.name" [ngModelOptions]="{standalone: true}"/></div>
-      <div class="col-sm-4"><input class="form-control" readonly [(ngModel)]="res.address" [ngModelOptions]="{standalone: true}"/></div>
-      <div class="col-sm-4"><input class="form-control" readonly [(ngModel)]="res.dishes" [ngModelOptions]="{standalone: true}"/></div>      
+      <div class="col-sm-4" ><input class="form-control" name="name" readonly [value]="res.name"/></div>
+      <div class="col-sm-4"><input class="form-control" name="address" readonly [value]="res.address"/></div>
+      <div class="col-sm-4"><input class="form-control" name="dishes" readonly [value]="res.dishes"/></div>      
     </div>
   </div>
 </form>

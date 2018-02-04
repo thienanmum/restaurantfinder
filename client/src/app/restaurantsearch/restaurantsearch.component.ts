@@ -9,6 +9,8 @@ import { SearchService } from '../_services/search.service';
 export class RestaurantsearchComponent implements OnInit {
 
   restaurants: Object;
+  searchDishes: Array<string>;
+  searchLocation: [number, number];
 
   constructor(private searchService: SearchService) { 
     
@@ -18,6 +20,9 @@ export class RestaurantsearchComponent implements OnInit {
   }
 
   onSubmit(){
+    console.log(this.searchDishes);
+    console.log(this.searchLocation);
+
     this.searchService.getRestaurants().subscribe(data => {
       this.restaurants = data;      
       console.log(this.restaurants);
