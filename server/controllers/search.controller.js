@@ -6,7 +6,7 @@ var searchService = require("../services/search.service.js");
 
 var router = express.Router();
 
-router.get("/search", getRestaurants);
+router.get("/search", getAllRestaurants);
 
 function getAllRestaurants(request, response){      
     

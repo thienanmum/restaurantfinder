@@ -8,9 +8,20 @@ import { SearchService } from '../_services/search.service';
 })
 export class RestaurantsearchComponent implements OnInit {
 
-  constructor(private searchService: SearchService) { }
+  restaurants: Object;
+
+  constructor(private searchService: SearchService) { 
+    
+  }
 
   ngOnInit() {
+  }
+
+  onSubmit(){
+    this.searchService.getRestaurants().subscribe(data => {
+      this.restaurants = data;      
+      console.log(this.restaurants);
+    })
   }
 
 }

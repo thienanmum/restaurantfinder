@@ -19,6 +19,7 @@ import { RestaurantsearchComponent } from './restaurantsearch/restaurantsearch.c
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './_services/auth.service';
 import { AuthGuard } from './_guards/auth.guard';
+import { SearchService } from './_services/search.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { AuthGuard } from './_guards/auth.guard';
   imports: [
     BrowserModule, FormsModule, ReactiveFormsModule, mainRoutes, HttpClientModule
   ],
-  providers: [UserService, AuthService, AuthGuard],
+  providers: [UserService, AuthService, AuthGuard, SearchService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
