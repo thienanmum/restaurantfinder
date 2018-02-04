@@ -6,7 +6,7 @@
     </div>
 
   </div>
-  <div class="form-row">
+  <div class="form-row" formGroupName="address">
     <div class="col-md-6 mb-3">
       <label >Street</label>
       <input type="text" class="form-control"  formControlName="street">
@@ -24,12 +24,13 @@
       <input type="text" class="form-control" formControlName="zip">
     </div>
   </div>
+
   <div class="form-group">
     <label>Main dishes serve (enter separately by comma)</label>
-    <textarea class="form-control" rows="5" formControlName="detail"></textarea>
+    <textarea class="form-control" rows="5" formControlName="dishes"></textarea>
   </div>
   <div class="form-group">
-  <button type="button" class="btn btn-primary" [disabled]="!myForm.valid">Save</button>
+  <button type="button" class="btn btn-primary" [disabled]="!myForm.valid" (click)=save()>Save</button>
   <button type="button" class="btn btn-primary" [disabled]="!myForm.valid">Delete</button>
   </div>
 </form>

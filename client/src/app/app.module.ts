@@ -20,6 +20,9 @@ import { LoginComponent } from './login/login.component';
 import { AuthService } from './_services/auth.service';
 import { AuthGuard } from './_guards/auth.guard';
 import { SearchService } from './_services/search.service';
+import { RestaurantdetailComponent } from './admin/restaurantdetail.component';
+import { RestaurantlistComponent } from './admin/restaurantlist.component';
+import { RestaurantService } from './_services/restaurant.service';
 
 @NgModule({
   declarations: [
@@ -27,12 +30,14 @@ import { SearchService } from './_services/search.service';
     HomeComponent,
     UserComponent,
     RestaurantsearchComponent,
-    LoginComponent
+    LoginComponent,
+    RestaurantdetailComponent,
+    RestaurantlistComponent
   ],
   imports: [
     BrowserModule, FormsModule, ReactiveFormsModule, mainRoutes, HttpClientModule
   ],
-  providers: [UserService, AuthService, AuthGuard, SearchService],
+  providers: [UserService, AuthService, AuthGuard, SearchService,RestaurantService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
