@@ -22,8 +22,9 @@ export class RestaurantsearchComponent implements OnInit {
   onSubmit(){
     console.log(this.searchDishes);
     console.log(this.searchLocation);
+    
 
-    this.searchService.getRestaurants().subscribe(data => {
+    this.searchService.getRestaurants(this.searchDishes, this.searchLocation).subscribe(data => {
       this.restaurants = data;      
       console.log(this.restaurants);
     })

@@ -21,7 +21,8 @@ app.use(cors());
 
 app.use('/users', users);
 app.use('/restaurants', restaurants);
-app.use('restaurant/search', search);
+app.use('restaurants/search', search);
+
 
 
 // catch 404 and forward to error handler

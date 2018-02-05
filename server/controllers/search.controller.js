@@ -6,18 +6,33 @@ var searchService = require("../services/search.service.js");
 
 var router = express.Router();
 
-router.get("/search", getAllRestaurants);
+router.get("/", getAllRestaurants);
+router.get("/:dishes", getRestaurantsWithDishes);
+router.get("/:dishes/:location", getRestaurantsWithDishesAndLocation);
 
-function getAllRestaurants(request, response){      
+function getAllRestaurants(req, res){      
     
     searchService.getAllRestaurants().then(docs => {
-        response.send(docs);        
+        res.send(docs);        
+    })
+}
+
+function getRestaurantsWithDishes(req, res){
+    console.log(req.params.dishes);
+    searchService.getRestaurantsWithDishes(req.params.dishes).then(docs =>{
+        res.send(docs);
+    })
+}
+
+function getRestaurantsWithDishesAndLocation(req, res){
+    searchService.getRestaurantsWithDishesAndLocation(req.params.dishes, req.params.location).then(docs =>{
+        res.send(docs);
     })
 }
 
 function getRestaurants(req, res){
-    searchService.getRestaurants(request.body.dishes, request.body.location).then(docs =>{
-        response.send(docs);
+    searchService.getRestaurants(req.params.dishes, req.params.location).then(docs =>{
+        res.send(docs);
     })
 }
 
