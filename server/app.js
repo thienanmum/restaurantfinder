@@ -9,9 +9,12 @@ var mongoose = require('mongoose');
 var users = require('./controllers/users.controller');
 var restaurants = require('./controllers/restaurant.controller');
 var search = require('./controllers/search.controller');
+var config = require('./config.json')
 
 var app = express();
-mongoose.connect('mongodb://localhost:27017/restaurantfinder');
+
+// mongoose.connect('mongodb://localhost:27017/restaurantfinder');
+mongoose.connect(config.connectionString);
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
