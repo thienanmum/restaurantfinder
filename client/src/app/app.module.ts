@@ -23,6 +23,7 @@ import { SearchService } from './_services/search.service';
 import { RestaurantdetailComponent } from './admin/restaurantdetail.component';
 import { RestaurantlistComponent } from './admin/restaurantlist.component';
 import { RestaurantService } from './_services/restaurant.service';
+import { RestaurantviewComponent } from './restaurantview/restaurantview.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { RestaurantService } from './_services/restaurant.service';
     RestaurantsearchComponent,
     LoginComponent,
     RestaurantdetailComponent,
-    RestaurantlistComponent
+    RestaurantlistComponent,
+    RestaurantviewComponent
   ],
   imports: [
     BrowserModule, FormsModule, ReactiveFormsModule, mainRoutes, HttpClientModule
