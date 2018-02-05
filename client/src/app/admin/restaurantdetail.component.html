@@ -6,7 +6,8 @@
     </div>
 
   </div>
-  <div class="form-row" formGroupName="address">
+  <div class="form-row" formGroupName="address" *ngIf="myForm.controls['address']">
+    <agm-map [latitude]="lat" [longitude]="lng"></agm-map>
     <div class="col-md-6 mb-3">
       <label >Street</label>
       <input type="text" class="form-control"  formControlName="street">

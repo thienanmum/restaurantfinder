@@ -6,5 +6,6 @@
  */
 
 export const appConfig = {
-    apiUrl: 'http://localhost:3000/'
+    apiUrl: 'http://localhost:3000/',
+    googleAPIKey: 'AIzaSyCttuNrA7m8X_dgzjnuJdafPhrBSGEAxnU'
 };

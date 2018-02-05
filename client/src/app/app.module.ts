@@ -9,6 +9,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { AgmCoreModule } from '@agm/core'
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -24,6 +25,7 @@ import { RestaurantdetailComponent } from './admin/restaurantdetail.component';
 import { RestaurantlistComponent } from './admin/restaurantlist.component';
 import { RestaurantService } from './_services/restaurant.service';
 import { RestaurantviewComponent } from './restaurantview/restaurantview.component';
+import { appConfig } from './app.config';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { RestaurantviewComponent } from './restaurantview/restaurantview.compone
     RestaurantviewComponent
   ],
   imports: [
-    BrowserModule, FormsModule, ReactiveFormsModule, mainRoutes, HttpClientModule
+    BrowserModule, FormsModule, ReactiveFormsModule, 
+    mainRoutes, HttpClientModule, 
+    AgmCoreModule.forRoot({ apiKey: appConfig.googleAPIKey })
   ],
   providers: [UserService, AuthService, AuthGuard, SearchService,RestaurantService],
   bootstrap: [AppComponent]

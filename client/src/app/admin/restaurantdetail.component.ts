@@ -18,9 +18,10 @@ import { Router } from '@angular/router';
 })
 export class RestaurantdetailComponent implements OnInit {
   myForm: FormGroup;
+  lat: number = 39;
+  lng: number = -98;
 
-
-  constructor(private formBuilder: FormBuilder, private restaurantService: RestaurantService, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private restaurantService: RestaurantService, private router: Router) {      
     this.myForm = formBuilder.group({
       'name': new FormControl('', [Validators.required]),
       'address': new FormGroup({
