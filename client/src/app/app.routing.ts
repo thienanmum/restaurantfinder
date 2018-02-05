@@ -15,8 +15,8 @@ const MAIN_ROUTES: Routes = [
     {path:"user/:id", component:UserComponent},
     {path:"restaurant/search", component: RestaurantsearchComponent},
     {path:"restaurant/search/view", component: RestaurantviewComponent},
-    {path:"user/:id?", component:UserComponent},
-    {path:"restaurant/:id?", component:RestaurantdetailComponent},
+    {path:"user/:id", component:UserComponent},
+    {path:"restaurant/:id", component:RestaurantdetailComponent},
     {path:"restaurant", component:RestaurantlistComponent}
 ]
 

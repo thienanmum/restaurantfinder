@@ -7,6 +7,9 @@ service.getAllRestaurants = function(){
     return Restaurant.find({});    
 }
 
+service.getRestaurantById = function(id){    
+    return Restaurant.findById(id);    
+}
 service.addNewRestaurant = function(restaurant){ 
     return Restaurant.create(restaurant);    
 }

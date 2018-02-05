@@ -13,6 +13,14 @@ function getAllRestaurants(req, res){
     })
 }
 
+router.get("/:id", getRestaurantById);
+function getRestaurantById(req, res){      
+    
+    restaurantService.getRestaurantById(req.params.id).then(docs => {
+        console.log(docs);
+        res.send(docs);        
+    })
+}
 
 router.post("/", addRestaurant);
 function addRestaurant(req, res){
