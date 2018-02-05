@@ -6,10 +6,11 @@ var bodyParser = require('body-parser');
 var cors = require('cors');
 var mongoose = require('mongoose');
 
+var config = require('./config.json');
 var users = require('./controllers/users.controller');
 var restaurants = require('./controllers/restaurant.controller');
 var search = require('./controllers/search.controller');
-var config = require('./config.json')
+var restaurantview = require('./controllers/restaurantview.controller');
 
 var app = express();
 
@@ -25,6 +26,7 @@ app.use(cors());
 app.use('/users', users);
 app.use('/restaurants', restaurants);
 app.use('/restaurant/search', search);
+app.use('/restaurant/search/view', restaurantview);
 
 
 

@@ -8,7 +8,7 @@ var router = express.Router();
 
 router.get("/", getAllRestaurants);
 router.get("/:dishes", getRestaurantsWithDishes);
-router.get("/:dishes/:location", getRestaurantsWithDishesAndLocation);
+//router.get("/:dishes/:location", getRestaurantsWithDishesAndLocation);
 
 function getAllRestaurants(req, res){      
     
