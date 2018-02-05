@@ -16,6 +16,7 @@ import { AuthService } from '../_services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+    error: string;
     loginForm: FormGroup = new FormGroup({
         'username': new FormControl(),
         'password': new FormControl()
@@ -27,7 +28,6 @@ export class LoginComponent implements OnInit {
     }
 
     login() {
-        console.log('Enter Login');
         this.authService.login(this.loginForm.value);
     }
 }

@@ -4,6 +4,8 @@
  * Author: annguyen
  * Description: Provides CRUD operations for user and authenticates a user.
  */
+const jwt = require('jsonwebtoken');
+var config = require('../config.json');
 
 const User = require('../models/user');
 
@@ -19,7 +21,12 @@ function authenticate(username, password) {
     return new Promise((resolve, reject) =>
         User.findOne({username:username})
             .then(user => {
-                if (user.password === password) resolve(user);
+                console.log("Enter ");
+                if (user.password === password) {
+                    const token = jwt.sign(user, config.secret);
+                    console.log(token);
+                    resolve({token: token});
+                }
                 else resolve(null);
             })
             .catch(err => reject(err))

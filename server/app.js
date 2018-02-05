@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var mongoose = require('mongoose');
+var expressJwt = require('express-jwt');
 
 var config = require('./config.json');
 var users = require('./controllers/users.controller');
@@ -22,6 +23,19 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cors());
+
+// use JWT auth to secure the api, the token can be passed in the authorization header or querystring
+app.use(expressJwt({
+    secret: config.secret,
+    getToken: function (req) {
+        if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
+            return req.headers.authorization.split(' ')[1];
+        } else if (req.query && req.query.token) {
+            return req.query.token;
+        }
+        return null;
+    }
+}).unless({ path: ['/users/authenticate', '/users/register'] }));
 
 app.use('/users', users);
 app.use('/restaurants', restaurants);

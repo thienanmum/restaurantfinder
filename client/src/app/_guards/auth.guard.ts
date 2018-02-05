@@ -1,3 +1,9 @@
+/**
+ * File: auth.guard.ts
+ * File Created: 02/03/2018
+ * Author: annguyen
+ * Description: Check if the user is logged in, if not redirect to Login page.
+ */
 import { Injectable } from "@angular/core";
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from "@angular/router";
 import { Observable } from "rxjs/Observable";

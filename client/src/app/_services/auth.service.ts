@@ -6,9 +6,8 @@
  */
 
 import { Injectable } from '@angular/core';
-import { tokenNotExpired } from 'angular2-jwt';
+import { tokenNotExpired, JwtHelper } from 'angular2-jwt';
 import { HttpClient } from '@angular/common/http';
-import 'rxjs/add/operator/map';
 
 import { User } from '../_models/user';
 import { appConfig } from '../app.config';
@@ -19,19 +18,30 @@ interface Credentials {username: string, password: string}
 
 @Injectable()
 export class AuthService {
-    currentUser:User;
+    get currentUser(): User {
+        if (this.loggedIn()) {
+            const token = localStorage.getItem('id_token');
+            return this.jwtHelper.decodeToken(token)["_doc"];
+        } else {
+            return null;
+        }
+    }
+
+    jwtHelper: JwtHelper = new JwtHelper();
 
     constructor(private http: HttpClient, private router: Router) { }
 
     login(credentials:Credentials) {
-        this.http.post(appConfig.apiUrl + 'users/authenticate', credentials)
+        this.http.post<{token:string}>(appConfig.apiUrl + 'users/authenticate', credentials)
             .subscribe(data => { 
-                const token = JSON.stringify(data);
-                localStorage.setItem('id_token', token);
-                console.log("Login successfully: " + token);
-                this.router.navigate(['home']);
-            }, 
-                error => console.log(error));
+                    console.log(data);
+                    localStorage.setItem('id_token', data.token);
+                    console.log("Login successfully: " + JSON.stringify(this.currentUser));
+                    this.router.navigate(['home']);
+                }, 
+                error => {
+                    console.log(error);                      
+                });
     }
 
     loggedIn() {

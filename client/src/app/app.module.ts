@@ -26,6 +26,9 @@ import { RestaurantlistComponent } from './admin/restaurantlist.component';
 import { RestaurantService } from './_services/restaurant.service';
 import { RestaurantviewComponent } from './restaurantview/restaurantview.component';
 import { appConfig } from './app.config';
+import { ReviewComponent } from './review/review.component';
+import { LogoutComponent } from './logout.component';
+import { HasRoleDirective } from './_directives/has-role.directive';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,10 @@ import { appConfig } from './app.config';
     LoginComponent,
     RestaurantdetailComponent,
     RestaurantlistComponent,
-    RestaurantviewComponent
+    RestaurantviewComponent,
+    ReviewComponent,
+    LogoutComponent,
+    HasRoleDirective
   ],
   imports: [
     BrowserModule, FormsModule, ReactiveFormsModule, 

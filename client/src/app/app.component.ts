@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core/';
+import { AuthService } from './_services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +9,6 @@ import { ViewEncapsulation } from '@angular/core/';
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
-  title = 'app';
+    title = 'app';
+    constructor(private authService: AuthService){}
 }

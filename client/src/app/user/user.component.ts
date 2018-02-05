@@ -13,6 +13,7 @@ import { UserService } from '../_services/user.service';
 import { UsernameUnique } from '../_validators/usernameUnique.validator';
 import { matchPassword } from '../_validators/matchpassword.validator';
 import { User } from '../_models/user';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
     selector: 'app-user',
@@ -33,11 +34,11 @@ export class UserComponent implements OnInit {
         email: new FormControl('', [Validators.required, Validators.email]),
         role: new FormControl('', Validators.required)
     });
-
+    subscription: Subscription;
     constructor(private userService: UserService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
     ngOnInit() {
-        this.activatedRoute.params.subscribe(param => {
+        this.subscription = this.activatedRoute.params.subscribe(param => {
             this.userId = param.id;
             if (this.userId && this.userId != '0') {
                 this.userService.getUserById(this.userId).subscribe(user => {
@@ -53,7 +54,11 @@ export class UserComponent implements OnInit {
         const user = new User(form._id, form.firstName, form.lastName, form.username, 
             form.pwdGroup.password, form.email, form.role);        
         this.userService.saveUser(user).subscribe(success => {
-            this.router.navigate(['home'])
+            this.router.navigate(['login'])
         }, error => { console.log(error) });
+    }
+
+    ngOnDestroy() {
+        this.subscription.unsubscribe();
     }
 }
