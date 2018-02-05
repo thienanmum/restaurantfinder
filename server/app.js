@@ -20,8 +20,8 @@ app.use(cookieParser());
 app.use(cors());
 
 app.use('/users', users);
-app.use('/restaurants', restaurants);
-app.use('restaurants/search', search);
+app.use('/restaurant', restaurants);
+app.use('/restaurant/search', search);
 
 
 
