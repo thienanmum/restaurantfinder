@@ -1,3 +1,7 @@
+// Author: ChauKy Nguyen
+// ID: 986085
+// Decription: component for details of Restaurant
+
 import { Component, OnInit } from '@angular/core';
 import {
   FormGroup,
@@ -38,24 +42,37 @@ export class RestaurantdetailComponent implements OnInit {
     this.subscription = route.params.subscribe((param:any) => this.id = param['id']);
   };
 
+
+// Save/update restaurant detail from FORM
   save() {
-    var dishes = this.myForm.value['dishes'].split(",").map(function (item) {
+   
+    var dishes: String = this.myForm.value['dishes'];
+    if(dishes.indexOf(",") !== -1){
+      dishes = this.myForm.value['dishes'].split(",").map(function (item) {
       return item.trim();
     });;
+    }
     this.myForm.value['dishes'] = dishes;
-    this.restaurantService.addRestaurant(this.myForm.value)
-      .subscribe(data => {console.log("return data"); this.router.navigate(['restaurant'])}, err => console.log(err));
+     if(this.id ===0){
+        this.restaurantService.addRestaurant(this.myForm.value)
+        .subscribe(data => {console.log("add new restaurant"); this.router.navigate(['restaurant'])}, err => console.log(err));
+     }else{
+        this.restaurantService.updateRestaurant(this.id, this.myForm.value)
+        .subscribe(data => {console.log("update the old restaurant"); this.router.navigate(['restaurant'])}, err => console.log(err));
+     }
   }
+
+  // Load Restaurant detail into Form
   ngOnInit() {
   
     if(this.id !=="0"){
      console.log(this.id)
-    this.restaurantService.getRestaurantById(this.id).subscribe(
+      this.restaurantService.getRestaurantById(this.id).subscribe(
       data=>{
         console.log("return data");
         this.restaurantDetail = data; 
         err => console.log(err);
-        console.log("return detail:" + this.restaurantDetail);
+       //load FORM value
         this.myForm.setValue({
           name: this.restaurantDetail.name,
           address: {
@@ -63,15 +80,28 @@ export class RestaurantdetailComponent implements OnInit {
             city: this.restaurantDetail.address.city,
             state: this.restaurantDetail.address.state,
             zip: this.restaurantDetail.address.zip
-
           },
           dishes: this.restaurantDetail.dishes
           });
     });
-
-    }
+   }
   }
 
+
+//delete the restaurant
+delete(){
+  if(this.id !=="0"){
+     console.log(this.id);
+     this.restaurantService.deleteRestaurantById(this.id).subscribe(
+      data=>{
+        console.log("Deleted restaurant with ID" + this.id);
+        this.router.navigate(['restaurant'])
+    });
+  }
+}
+
+
+// destroy subscription to release memory
   inOnDestroy(){
     this.subscription.unsubscribe();
   }

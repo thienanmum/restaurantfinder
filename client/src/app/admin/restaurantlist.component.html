@@ -10,7 +10,7 @@
   </thead>
   <tbody *ngFor = "let item of restaurantList; let num = index">
     <tr>
-      <th scope="row">{{num}}</th>
+      <th scope="row">{{num +1}}</th>
       <td><a [routerLink]="[item._id]">{{item.name}}</a></td>
       <td>{{item.address.city}}</td>
       <td>{{item.dishes}}</td>
