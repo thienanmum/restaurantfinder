@@ -7,7 +7,14 @@
 
   </div>
   <div class="form-row" formGroupName="address" *ngIf="myForm.controls['address']">
-    <agm-map [latitude]="lat" [longitude]="lng"></agm-map>
+    <agm-map [latitude]="lat" [longitude]="lng">
+        <agm-marker [latitude]="lat" [longitude]="lng">
+            <agm-info-window>
+              <h3><strong>Howdy!</strong></h3>
+              <p>You are here!</p>
+            </agm-info-window>
+          </agm-marker>
+    </agm-map>
     <div class="col-md-6 mb-3">
       <label >Street</label>
       <input type="text" class="form-control"  formControlName="street">

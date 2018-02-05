@@ -26,6 +26,7 @@ import { RestaurantlistComponent } from './admin/restaurantlist.component';
 import { RestaurantService } from './_services/restaurant.service';
 import { RestaurantviewComponent } from './restaurantview/restaurantview.component';
 import { appConfig } from './app.config';
+import { GeolocationService } from './_services/geolocation.service';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,7 @@ import { appConfig } from './app.config';
     mainRoutes, HttpClientModule, 
     AgmCoreModule.forRoot({ apiKey: appConfig.googleAPIKey })
   ],
-  providers: [UserService, AuthService, AuthGuard, SearchService,RestaurantService],
+  providers: [UserService, AuthService, AuthGuard, SearchService,RestaurantService, GeolocationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
