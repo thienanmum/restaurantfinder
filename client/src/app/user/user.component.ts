@@ -10,6 +10,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from "@angular/router";
 
 import { UserService } from '../_services/user.service';
+import { UsernameUnique } from '../_validators/usernameUnique.validator';
+import { matchPassword } from '../_validators/matchpassword.validator';
+import { User } from '../_models/user';
 
 @Component({
     selector: 'app-user',
@@ -22,9 +25,11 @@ export class UserComponent implements OnInit {
         _id: new FormControl(''),
         firstName: new FormControl('', Validators.required),
         lastName: new FormControl('', Validators.required),
-        username: new FormControl('', Validators.required),
-        password: new FormControl('', Validators.required),
-        confirmPassword: new FormControl('', Validators.required),
+        username: new FormControl('', [Validators.required], UsernameUnique.createValidator(this.userService)),
+        pwdGroup: new FormGroup({
+            password: new FormControl('', Validators.required),
+            confirmPassword: new FormControl('', Validators.required),
+        }, matchPassword),        
         email: new FormControl('', [Validators.required, Validators.email]),
         role: new FormControl('', Validators.required)
     });
@@ -40,12 +45,14 @@ export class UserComponent implements OnInit {
                 });
             }
         })
-        this.userForm.valueChanges.subscribe(data => console.log(data));
+        this.userForm.valueChanges.subscribe(data => console.log(this.userForm));
     }
 
     onSubmit() {
-        console.log(this.userForm);
-        this.userService.saveUser(this.userForm.value).subscribe(success => {
+        const form = this.userForm.value;
+        const user = new User(form._id, form.firstName, form.lastName, form.username, 
+            form.pwdGroup.password, form.email, form.role);        
+        this.userService.saveUser(user).subscribe(success => {
             this.router.navigate(['home'])
         }, error => { console.log(error) });
     }

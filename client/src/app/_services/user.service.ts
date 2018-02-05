@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { appConfig } from '../app.config';
 import { User } from '../_models/user';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class UserService {
@@ -17,11 +18,11 @@ export class UserService {
     }
   }
 
-  getUserById(userId:string) {
-    return this.http.get(appConfig.apiUrl + 'users/' + userId);
+  getUserById(userId:string):Observable<User> {
+    return this.http.get<User>(appConfig.apiUrl + 'users/' + userId);
   }
 
-  getAllUsers() {
-    return this.http.get(appConfig.apiUrl + 'users');
+  getAllUsers():Observable<User[]> {
+    return this.http.get<User[]>(appConfig.apiUrl + 'users');
   }
 }
