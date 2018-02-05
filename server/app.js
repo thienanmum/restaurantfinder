@@ -9,6 +9,7 @@ var mongoose = require('mongoose');
 var users = require('./controllers/users.controller');
 var restaurants = require('./controllers/restaurant.controller');
 var search = require('./controllers/search.controller');
+var restaurantview = require('./controllers/restaurantview.controller');
 
 var app = express();
 mongoose.connect('mongodb://localhost:27017/restaurantfinder');
@@ -22,6 +23,7 @@ app.use(cors());
 app.use('/users', users);
 app.use('/restaurants', restaurants);
 app.use('/restaurant/search', search);
+app.use('/restaurant/search/view', restaurantview);
 
 
 
