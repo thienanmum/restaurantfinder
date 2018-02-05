@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RestaurantService } from '../_services/restaurant.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-restaurantlist',
@@ -9,8 +10,8 @@ import { RestaurantService } from '../_services/restaurant.service';
 export class RestaurantlistComponent implements OnInit {
   public restaurantList;
 
-  constructor(private restaurantService: RestaurantService) {
-   
+  constructor(private restaurantService: RestaurantService, private router: Router) {
+   //route.params.subcribe(params=>{this.id=params['id']};)
    }
 
   ngOnInit() {
@@ -20,4 +21,7 @@ export class RestaurantlistComponent implements OnInit {
    
    }
 
+  navigateAdd(){
+  this.router.navigate(['restaurant/0']);
   }
+}

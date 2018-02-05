@@ -10,15 +10,15 @@
   </thead>
   <tbody *ngFor = "let item of restaurantList; let num = index">
     <tr>
-      <th scope="row">{{num}}</th>
-      <td>{{item.name}}</td>
+      <th scope="row">{{num +1}}</th>
+      <td><a [routerLink]="[item._id]">{{item.name}}</a></td>
       <td>{{item.address.city}}</td>
       <td>{{item.dishes}}</td>
       <td>Good</td>
     </tr>
    </tbody>
 </table>
-<button class="btn btn-primary">Add</button>
+<button class="btn btn-primary" (click)="navigateAdd()">Add</button>
 <div class="container">
   <router-outlet></router-outlet>
 </div>

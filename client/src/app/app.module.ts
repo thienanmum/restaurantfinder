@@ -29,6 +29,7 @@ import { appConfig } from './app.config';
 import { ReviewComponent } from './review/review.component';
 import { LogoutComponent } from './logout.component';
 import { HasRoleDirective } from './_directives/has-role.directive';
+import { GeolocationService } from './_services/geolocation.service';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,7 @@ import { HasRoleDirective } from './_directives/has-role.directive';
     mainRoutes, HttpClientModule, 
     AgmCoreModule.forRoot({ apiKey: appConfig.googleAPIKey })
   ],
-  providers: [UserService, AuthService, AuthGuard, SearchService,RestaurantService],
+  providers: [UserService, AuthService, AuthGuard, SearchService,RestaurantService, GeolocationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
