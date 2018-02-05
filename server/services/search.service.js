@@ -3,23 +3,27 @@ var mongoose = require("mongoose");
 var Restaurant = require("../models/restaurant");
 
 var service = {};
-service.getRestaurants = function(myDishes, myLocation){    
-    return Restaurant.find({$and: [{dishes: 'pho'}, {location: myLocation}]});    
+// service.getRestaurants = function(myDishes, myLocation){    
+//     return Restaurant.find({$and: [{dishes: 'pho'}, {location: myLocation}]});    
+// }
+
+service.getNearRestaurants = function(currentCord){ 
+    console.log("Anh An banana");   
+    return Restaurant.find({location: {$near: currentCord}}).limit(2);    
 }
 
-service.getAllRestaurants = function(){    
-    return Restaurant.find({});    
-}
+// service.getRestaurantsWithDishes = function(dishes){      
+//     var dishArray = dishes.split(",");
+//     dishArray = dishArray.map(x => x.trim());    
 
-service.getRestaurantsWithDishes = function(dishes){      
+//     return Restaurant.find({"dishes": {$in: dishArray}});    
+// }
+
+service.getRestaurantsWithDishesAndLocation = function(currentCord, dishes){  
     var dishArray = dishes.split(",");
-    dishArray = dishArray.map(x => x.trim());    
+    dishArray = dishArray.map(x => x.trim());
 
-    return Restaurant.find({"dishes": {$in: dishArray}});    
-}
-
-service.getRestaurantsWithDishesAndLocation = function(dishes, location){    
-    return Restaurant.find({$and: [{"dishes": {$or: dishes}}, {"location": location}]});    
+    return Restaurant.find({$and: [{location: {$near: currentCord}}, {dishes: {$in: dishArray}}]});    
 }
 
 module.exports = service;

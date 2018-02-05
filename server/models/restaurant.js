@@ -12,4 +12,6 @@ var restaurantSchema = new mongoose.Schema({
     reviews: [String]
 }, {collection: "restaurants"})
 
+restaurantSchema.index({location: '2d'});
+
 module.exports = mongoose.model("Restaurant", restaurantSchema);

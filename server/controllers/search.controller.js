@@ -6,35 +6,49 @@ var searchService = require("../services/search.service.js");
 
 var router = express.Router();
 
-router.get("/", getAllRestaurants);
-router.get("/:dishes", getRestaurantsWithDishes);
+router.get("/:longtitude/:latitude/:dishes?", getRestaurants);
+//router.post("/", getAllRestaurants);
+//router.get("/:dishes", getRestaurantsWithDishes);
 //router.get("/:dishes/:location", getRestaurantsWithDishesAndLocation);
 
-function getAllRestaurants(req, res){      
+function getRestaurants(req, res){ 
+    var currentCord = [Number(req.params.longtitude), Number(req.params.latitude)];  
+    console.log(currentCord);
     
-    searchService.getAllRestaurants().then(docs => {
-        res.send(docs);        
-    })
+    if(!req.params.dishes){
+        console.log(1);
+        searchService.getNearRestaurants(currentCord).then(docs => {
+            res.send(docs);        
+        })
+    }
+    else{
+        console.log(2);
+        searchService.getRestaurantsWithDishesAndLocation(currentCord, req.params.dishes).then(docs => {
+            res.send(docs);        
+        })
+    }
+    
+    
 }
 
-function getRestaurantsWithDishes(req, res){
-    console.log(req.params.dishes);
-    searchService.getRestaurantsWithDishes(req.params.dishes).then(docs =>{
-        res.send(docs);
-    })
-}
+// function getRestaurantsWithDishes(req, res){
+//     console.log(req.params.dishes);
+//     searchService.getRestaurantsWithDishes(req.params.dishes).then(docs =>{
+//         res.send(docs);
+//     })
+// }
 
-function getRestaurantsWithDishesAndLocation(req, res){
-    searchService.getRestaurantsWithDishesAndLocation(req.params.dishes, req.params.location).then(docs =>{
-        res.send(docs);
-    })
-}
+// function getRestaurantsWithDishesAndLocation(req, res){
+//     searchService.getRestaurantsWithDishesAndLocation(req.params.dishes, req.params.location).then(docs =>{
+//         res.send(docs);
+//     })
+// }
 
-function getRestaurants(req, res){
-    searchService.getRestaurants(req.params.dishes, req.params.location).then(docs =>{
-        res.send(docs);
-    })
-}
+// function getRestaurants(req, res){
+//     searchService.getRestaurants(req.params.dishes, req.params.location).then(docs =>{
+//         res.send(docs);
+//     })
+// }
 
 module.exports = router;
 

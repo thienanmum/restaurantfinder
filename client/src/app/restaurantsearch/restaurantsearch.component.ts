@@ -13,7 +13,7 @@ export class RestaurantsearchComponent implements OnInit {
 
   restaurants: Object;
   searchDishes: Array<string>;
-  searchLocation: [number, number]; 
+  searchAddress: string; 
   currentCord: Coordinates;
   
   constructor(private searchService: SearchService, private geoService: GeolocationService) { 
@@ -31,13 +31,10 @@ export class RestaurantsearchComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log(this.searchDishes);
-    console.log(this.searchLocation);
-    
+    //Get longtitude and latitude from an input address
 
-    this.searchService.getRestaurants(this.searchDishes, this.searchLocation).subscribe(data => {
-      this.restaurants = data;      
-      console.log(this.restaurants);
+    this.searchService.getRestaurants(this.currentCord.longitude, this.currentCord.latitude, this.searchDishes).subscribe(data => {     
+      this.restaurants = data;     
     })
   }
 
