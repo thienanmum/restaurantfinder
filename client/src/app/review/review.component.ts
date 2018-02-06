@@ -44,7 +44,7 @@ export class ReviewComponent implements OnInit {
         if (this.restaurant && !this.restaurant.reviews) this.restaurant.reviews = [];
         this.restaurant.reviews.push(review);
         this.isEditing = false;
-        this.restaurantService.updateRestaurant(this.restaurant._id, this.restaurant)
+        this.restaurantService.addReview(this.restaurant._id, this.restaurant)
             .subscribe(data => console.log("Insert review: " + JSON.stringify(review)));
     }
 }
