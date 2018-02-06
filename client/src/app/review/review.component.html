@@ -9,9 +9,13 @@ Description:
     <div>{{item.username}} - {{item.rating}}</div>
     <div>{{item.comment}}</div>
 </div>
-<button (click)="addReview()" [disabled]="isEditing">Add Review</button>
+<button class="btn btn-primary" (click)="addReview()" [disabled]="isEditing">Add Review</button>
+
 <form *ngIf="isEditing" [formGroup]="reviewForm" class="form-group">
-    <textarea formControlName="comment"></textarea>
-    <input formControlName="rating" />
-    <button (click)="saveReview()">OK</button>
+    
+    <textarea class="form-control ctrl-space" rows="5" formControlName="comment"></textarea>
+    <input class="form-control ctrl-space" formControlName="rating" />    
+    <button class="btn btn-primary ctrl-space" (click)="saveReview()">OK</button>
+    
+   
 </form>
