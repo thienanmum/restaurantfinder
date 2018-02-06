@@ -1,7 +1,7 @@
 <nav class="navbar navbar-toggleable-sm navbar-light bg-faded">
     <div class="navbar-nav mr-auto">
         <a class="nav-item nav-link active" [routerLink]="['home']">Home</a>
-        <a class="nav-item nav-link active" [routerLink]="['register']" *ngIf="!authService.loggedIn()">Register</a>
+        <!--<a class="nav-item nav-link active" [routerLink]="['register']" *ngIf="!authService.loggedIn()">Register</a>-->
         <a class="nav-item nav-link active" [routerLink]="['restaurant']" *appHasRole="'admin'">Restaurant</a>
         <!--<a class="nav-item nav-link active" [routerLink]="['restaurant/search']" *ngIf="authService.loggedIn()">Search</a>-->
     </div>
