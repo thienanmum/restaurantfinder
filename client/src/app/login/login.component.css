@@ -5,3 +5,6 @@ h2{
 label{
     font-weight: bold;
 }
+input{
+    width: 300px;
+}
