@@ -1,7 +1,7 @@
 
 <form #f="ngForm" (ngSubmit)="onSubmit()">
   <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-6">        
         <agm-map [latitude]="currentCord?.latitude" [longitude]="currentCord?.longitude">
             <agm-marker [latitude]="currentCord?.latitude" [longitude]="currentCord?.longitude">
                 <agm-info-window>
@@ -31,7 +31,7 @@
           <div class="col-sm-4">Dishes</div>      
         </div>
     <div class="row" *ngFor="let res of restaurants" style="background-color:lavender;">
-      <div class="col-sm-4" ><a [routerLink]="['view']">{{res.name}}</a></div>
+      <div class="col-sm-4" ><a [routerLink]="['/restaurant/view/'+ res._id]"  >{{res.name}}</a></div>
       <div class="col-sm-4">{{res.address}}/></div>
       <div class="col-sm-4">{{res.dishes}}</div>      
     </div>

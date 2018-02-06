@@ -40,7 +40,7 @@ app.use(cors());
 app.use('/users', users);
 app.use('/restaurants', restaurants);
 app.use('/restaurant/search', search);
-app.use('/restaurant/search/view', restaurantview);
+app.use('/restaurant/view', restaurantview);
 
 
 
