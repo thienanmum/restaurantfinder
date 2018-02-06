@@ -1,7 +1,13 @@
+<!--
+File: app.component.html
+File Created: 02/03/2018
+Author: annguyen
+Description: Main component of the application
+-->
 <nav class="navbar navbar-toggleable-sm navbar-light bg-faded">
     <div class="navbar-nav mr-auto">
         <a class="nav-item nav-link active" [routerLink]="['home']">Home</a>
-        <a class="nav-item nav-link active" [routerLink]="['register']" *ngIf="!authService.loggedIn()">Register</a>
+        <!--<a class="nav-item nav-link active" [routerLink]="['register']" *ngIf="!authService.loggedIn()">Register</a>-->
         <a class="nav-item nav-link active" [routerLink]="['restaurant']" *appHasRole="'admin'">Restaurant</a>
     </div>
     <div class="navbar-nav" *ngIf="authService.loggedIn()">
@@ -10,6 +16,9 @@
     </div>
     
 </nav>
+
+<h1>What do you want to eat? 
+    and Where?</h1>
 <div class="container">
     <!-- <div class="row error">{{error}}</div> -->
     <router-outlet></router-outlet>

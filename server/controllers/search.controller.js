@@ -13,16 +13,13 @@ router.get("/:longtitude/:latitude/:dishes?", getRestaurants);
 
 function getRestaurants(req, res){ 
     var currentCord = [Number(req.params.longtitude), Number(req.params.latitude)];  
-    console.log(currentCord);
-    
-    if(!req.params.dishes){
-        console.log(1);
+       
+    if(!req.params.dishes){        
         searchService.getNearRestaurants(currentCord).then(docs => {
             res.send(docs);        
         })
     }
-    else{
-        console.log(2);
+    else{        
         searchService.getRestaurantsWithDishesAndLocation(currentCord, req.params.dishes).then(docs => {
             res.send(docs);        
         })

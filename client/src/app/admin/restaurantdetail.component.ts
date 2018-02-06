@@ -134,6 +134,7 @@ export class RestaurantdetailComponent implements OnInit {
         this.subscription.unsubscribe();
     }
 
+//Thien An updated location show on Google MAP
     updateLocation() {
         const address = this.myForm.value.address;
         this.geoService.getLocation(new Address(address.street, address.city,

@@ -30,11 +30,9 @@ export class RestaurantsearchComponent implements OnInit {
     
   }
 
-  onSubmit(){
-    //Get longtitude and latitude from an input address
-
+  onSubmit(){   
     this.searchService.getRestaurants(this.currentCord.longitude, this.currentCord.latitude, this.searchDishes).subscribe(data => {     
-      this.restaurants = data;     
+      this.restaurants = data;      
     })
   }
 

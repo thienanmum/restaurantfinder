@@ -7,8 +7,7 @@ var service = {};
 //     return Restaurant.find({$and: [{dishes: 'pho'}, {location: myLocation}]});    
 // }
 
-service.getNearRestaurants = function(currentCord){ 
-    console.log("Anh An banana");   
+service.getNearRestaurants = function(currentCord){     
     return Restaurant.find({location: {$near: currentCord}}).limit(2);    
 }
 
