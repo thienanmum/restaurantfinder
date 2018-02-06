@@ -31,7 +31,7 @@ export class ReviewComponent implements OnInit {
     }
 
     ngOnInit() {
-        
+        this.reviewForm.controls['rating'].setValue(2);
 
     }
 
