@@ -1,8 +1,15 @@
+<!--
+File: review.component.html
+File Created: 02/05/2018
+Author: annguyen
+Description:
+-->
+
 <div *ngFor="let item of reviews">
     <div>{{item.username}} - {{item.rating}}</div>
     <div>{{item.comment}}</div>
 </div>
-<button (click)="addReview()" [disabled]="!isEditing">Add Review</button>
+<button (click)="addReview()" [disabled]="isEditing">Add Review</button>
 <form *ngIf="isEditing" [formGroup]="reviewForm">
     <textarea formControlName="comment"></textarea>
     <input formControlName="rating" />

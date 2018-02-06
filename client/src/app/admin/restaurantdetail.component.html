@@ -7,8 +7,8 @@
 
   </div>
   <div class="form-row" formGroupName="address" *ngIf="myForm.controls['address']">
-    <agm-map [latitude]="lat" [longitude]="lng">
-        <agm-marker [latitude]="lat" [longitude]="lng">
+    <agm-map [latitude]="location?.latitude" [longitude]="location?.longitude">
+        <agm-marker [latitude]="location?.latitude" [longitude]="location?.longitude">
             <agm-info-window>
               <h3><strong>Howdy!</strong></h3>
               <p>You are here!</p>
@@ -38,6 +38,7 @@
     <textarea class="form-control" rows="5" formControlName="dishes"></textarea>
   </div>
   <div class="form-group">
+  <button type="button" class="btn btn-primary"  (click)=updateLocation()>Lookup</button>
   <button type="button" class="btn btn-primary" [disabled]="!myForm.valid" (click)=save()>Save</button>
   <button type="button" class="btn btn-primary" [disabled]="!myForm.valid"(click)=delete() >Delete</button>
   </div>

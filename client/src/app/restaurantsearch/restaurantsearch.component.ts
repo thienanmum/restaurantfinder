@@ -17,7 +17,7 @@ export class RestaurantsearchComponent implements OnInit {
   currentCord: Coordinates;
   
   constructor(private searchService: SearchService, private geoService: GeolocationService) { 
-    this.geoService.getLocation().subscribe(cord =>{      
+    this.geoService.getCurrentLocation().subscribe(cord =>{      
       this.currentCord = new Coordinates({
            latitude: cord.latitude,
            longitude: cord.longitude,
