@@ -32,7 +32,7 @@
         </div>
     <div class="row" *ngFor="let res of restaurants" style="background-color:lavender;">
       <div class="col-sm-4" ><a [routerLink]="['/restaurant/view/'+ res._id]"  >{{res.name}}</a></div>
-      <div class="col-sm-4">{{res.address}}/></div>
+      <div class="col-sm-4">{{res.address.street}}, {{res.address.city}}, {{res.address.state}} {{res.address.zip}}</div>
       <div class="col-sm-4">{{res.dishes}}</div>      
     </div>
   </div>
