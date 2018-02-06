@@ -1,3 +1,10 @@
+/**
+ * File: restaurantsearch.component.js
+ * File Created: 02/03/2018
+ * Author: nutran
+ * Description: Component for restaurant searching
+ */
+
 import { Component, OnInit, NgZone } from '@angular/core';
 import { SearchService } from '../_services/search.service';
 import { AgmCoreModule } from '@agm/core';
@@ -22,8 +29,9 @@ export class RestaurantsearchComponent implements OnInit {
            latitude: cord.latitude,
            longitude: cord.longitude,
            accuracy: 20
-      }) ;      
+      }) ;   
     })
+   
   }
 
   ngOnInit() {
@@ -49,5 +57,4 @@ export class RestaurantsearchComponent implements OnInit {
     })
 
   }
-
 }
