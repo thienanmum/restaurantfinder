@@ -103,9 +103,9 @@ export class RestaurantdetailComponent implements OnInit {
                             dishes: dish
                         });
                         // set Location
-                        if (data.location) {
-                            console.log(data.location);
-                            this.location = new Coordinates({longitude: data[0], latitude: data[1]});
+                        if (data.location) {     
+                            this.location = new Coordinates({longitude: data.location[0], 
+                                latitude: data.location[1]});   
                         }
                     });
             }

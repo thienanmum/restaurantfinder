@@ -21,8 +21,7 @@ function authenticate(username, password) {
     return new Promise((resolve, reject) =>
         User.findOne({username:username})
             .then(user => {
-                console.log("Enter ");
-                if (user.password === password) {
+                if (user && user.password === password) {
                     const token = jwt.sign(user, config.secret);
                     console.log(token);
                     resolve({token: token});
