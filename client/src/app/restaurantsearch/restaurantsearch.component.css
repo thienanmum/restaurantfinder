@@ -1,7 +1,12 @@
+/**
+ * File: restaurantsearch.component.css
+ * File Created: 02/03/2018
+ * Author: nutran
+ * Description: Css for restaurant searching component
+ */
 agm-map {
     height: 300px;
 }
-
 
 div.row{
     margin-top: 30px;

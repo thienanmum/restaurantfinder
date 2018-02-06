@@ -1,5 +1,9 @@
-
-
+/**
+ * File: restaurant.ts
+ * File Created: 02/03/2018
+ * Author: nutran
+ * Description: schema for restaurant
+ */
 const mongoose = require("mongoose")
 
 var restaurantSchema = new mongoose.Schema({
