@@ -13,8 +13,7 @@ import { NgRedux } from 'ng2-redux';
 
 import { User } from '../_models/user';
 import { appConfig } from '../app.config';
-import { generateAlertAction } from '../app.store';
-import { IAppState } from '../app.store';
+import { generateAlertAction, IAppState } from '../app.store';
 
 interface Credentials {username: string, password: string}
 
@@ -41,13 +40,10 @@ export class AuthService {
                     this.userChanged.emit(this.currentUser);
                     console.log("Login successfully: " + JSON.stringify(this.currentUser));
                     this.router.navigate(['home']);   
-                    // this.ngRedux.dispatch(generateAlertAction(""));
-                    // this.ngRedux.dispatch({type: "ACT_ALERT", data: ""});           
+                    this.ngRedux.dispatch(generateAlertAction(""));       
                 }, 
                 error => {
-                    // this.ngRedux.dispatch(generateAlertAction("Invalid username or password."));
-                    // this.ngRedux.dispatch({type: "ACT_ALERT", data: "Invalid username or password"});
-                    console.log(error);                  
+                    this.ngRedux.dispatch(generateAlertAction("Invalid username or password."));             
                 });
     }
 
