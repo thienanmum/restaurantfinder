@@ -1,3 +1,15 @@
+h1{
+    margin: 10px;
+}
+
 agm-map {
     height: 300px;
+    width: 500px;
+    float:right;
+}
+#lookup{
+     float:right;  
+}
+#dish{
+    margin-left: 10px;
 }
