@@ -23,7 +23,6 @@ function authenticate(username, password) {
             .then(user => {
                 if (user && user.password === password) {
                     const token = jwt.sign(user, config.secret);
-                    console.log(token);
                     resolve({token: token});
                 }
                 else resolve(null);

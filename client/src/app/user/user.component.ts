@@ -46,7 +46,7 @@ export class UserComponent implements OnInit {
                 });
             }
         })
-        this.userForm.valueChanges.subscribe(data => console.log(this.userForm));
+        // this.userForm.valueChanges.subscribe(data => console.log(this.userForm));
     }
 
     onSubmit() {

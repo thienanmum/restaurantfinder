@@ -1,3 +1,10 @@
+/**
+ * File: app.js
+ * File Created: 02/03/2018
+ * Author: annguyen
+ * Description: entry point for node server. 
+ */
+
 var express = require('express');
 var path = require('path');
 var logger = require('morgan');
@@ -15,7 +22,6 @@ var restaurantview = require('./controllers/restaurantview.controller');
 
 var app = express();
 
-// mongoose.connect('mongodb://localhost:27017/restaurantfinder');
 mongoose.connect(config.connectionString);
 
 app.use(logger('dev'));
@@ -24,25 +30,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cors());
 
-// use JWT auth to secure the api, the token can be passed in the authorization header or querystring
-// app.use(expressJwt({
-//     secret: config.secret,
-//     getToken: function (req) {
-//         if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
-//             return req.headers.authorization.split(' ')[1];
-//         } else if (req.query && req.query.token) {
-//             return req.query.token;
-//         }
-//         return null;
-//     }
-// }).unless({ path: ['/users/authenticate', '/users/register'] }));
+// use JWT auth to secure the api, the token can be passed in the authorization header
+app.use(expressJwt({
+    secret: config.secret
+}).unless({ path: ['/users/authenticate', '/users'] }));
 
 app.use('/users', users);
 app.use('/restaurants', restaurants);
 app.use('/restaurant/search', search);
 app.use('/restaurant/view', restaurantview);
-
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

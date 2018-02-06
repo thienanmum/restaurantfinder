@@ -32,6 +32,8 @@ import { HasRoleDirective } from './_directives/has-role.directive';
 import { GeolocationService } from './_services/geolocation.service';
 import { NgRedux, NgReduxModule } from 'ng2-redux';
 import { IAppState, appStore } from './app.store';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './app.interceptor';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,9 @@ import { IAppState, appStore } from './app.store';
     mainRoutes, HttpClientModule, NgReduxModule,
     AgmCoreModule.forRoot({ apiKey: appConfig.googleAPIKey })
   ],
-  providers: [UserService, AuthService, AuthGuard, SearchService,RestaurantService, GeolocationService],
+  providers: [UserService, AuthService, AuthGuard, SearchService,RestaurantService, GeolocationService,
+        {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { 
