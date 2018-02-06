@@ -37,18 +37,16 @@ export class RestaurantdetailComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private restaurantService: RestaurantService, private router: Router, private route: ActivatedRoute) {
     // initial form with empty string
     this.myForm = formBuilder.group({
-      'name': new FormControl('', [Validators.required]),
+      'name': new FormControl('', [Validators.required, Validators.minLength(3)]),
       'address': new FormGroup({
-        'street': new FormControl('', [Validators.required]),
-        'city': new FormControl('', [Validators.required]),
-        'state': new FormControl('', [Validators.required]),
-        'zip': new FormControl('', [Validators.required]),
+        'street': new FormControl('', [Validators.required, Validators.minLength(3)]),
+        'city': new FormControl('', [Validators.required, Validators.minLength(3)]),
+        'state': new FormControl('', [Validators.required, Validators.minLength(2)] ),
+        'zip': new FormControl('', [Validators.required, Validators.minLength(3)]),
       }),
-      'dishes': new FormControl('', [Validators.required])
+      'dishes': new FormControl('', [Validators.required,  Validators.minLength(3)])
     });
   };
-
-
   // Save/update restaurant detail from FORM
   save() {
     // split dish as seperated by comma and trim space 
@@ -74,12 +72,14 @@ export class RestaurantdetailComponent implements OnInit {
   ngOnInit() {
     this.subscription = this.route.params.subscribe((param: any) => {
       this.id = param['id'];
-
+      var dish: String ="";
       //load the restaurant detail into form, the id !=0 meant load existed restaurant info
       if (this.id !== "0") {
         this.restaurantService.getRestaurantById(this.id).subscribe(
           data => {
             this.restaurantDetail = data;
+            //dishes is array and it is combine again after trim
+            dish  += this.restaurantDetail.dishes;
             err => console.log(err);
             //set FORM value
             this.myForm.setValue({
@@ -90,7 +90,7 @@ export class RestaurantdetailComponent implements OnInit {
                 state: this.restaurantDetail.address.state,
                 zip: this.restaurantDetail.address.zip
               },
-              dishes: this.restaurantDetail.dishes
+              dishes: dish
             });
           });
       }

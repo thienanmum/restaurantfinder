@@ -12,6 +12,7 @@ Copyright (c) 2018 Your Company
     <div class="col-md-4 mb-3">
       <label>Restaurant Name</label>
       <input type="text" class="form-control" formControlName="name">
+      <span *ngIf="!myForm.controls['name'].valid" style="color:red">Required at least 3 characters</span>
     </div>
 
   </div>
@@ -29,24 +30,29 @@ Copyright (c) 2018 Your Company
     <div class="col-md-6 mb-3">
       <label>Street</label>
       <input type="text" class="form-control" formControlName="street">
+      <span *ngIf="!myForm.get('address').controls['street'].valid" style="color:red">Required at least 3 characters</span>
     </div>
     <div class="col-md-6 mb-3">
       <label>City</label>
       <input type="text" class="form-control" formControlName="city">
+      <span *ngIf="!myForm.get('address').controls['city'].valid" style="color:red">Required at least 3 characters</span>
     </div>
     <div class="col-md-3 mb-3">
       <label>State</label>
       <input type="text" class="form-control" formControlName="state">
+      <span *ngIf="!myForm.get('address').controls['state'].valid" style="color:red">Required at least 2 characters</span>
     </div>
     <div class="col-md-3 mb-3">
       <label>Zip</label>
       <input type="text" class="form-control" formControlName="zip">
+      <span *ngIf="!myForm.get('address').controls['zip'].valid" style="color:red">Required at least 3 characters</span>
     </div>
   </div>
 
   <div class="form-group">
     <label>Main dishes serve (enter separately by comma)</label>
     <textarea class="form-control" rows="5" formControlName="dishes"></textarea>
+    <span *ngIf="!myForm.controls['dishes'].valid" style="color:red">Required at least 3 characters</span>
   </div>
   <div class="form-group">
     <button type="button" class="btn btn-primary" [disabled]="!myForm.valid" (click)=save()>Save</button>
