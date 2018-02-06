@@ -29,8 +29,9 @@ export class RestaurantsearchComponent implements OnInit {
            latitude: cord.latitude,
            longitude: cord.longitude,
            accuracy: 20
-      }) ;      
+      }) ;   
     })
+   
   }
 
   ngOnInit() {
@@ -56,5 +57,4 @@ export class RestaurantsearchComponent implements OnInit {
     })
 
   }
-
 }
