@@ -5,13 +5,31 @@ Author: annguyen
 Description:
 -->
 
+<h3>Customer Reviews:</h3>
+<hr>
 <div *ngFor="let item of restaurant?.reviews">
-    <div>{{item.username}} - {{item.rating}}</div>
+    <div><b>{{item.username}} </b>- {{item.rating|changRating}}</div>
     <div>{{item.comment}}</div>
+    <hr>
 </div>
-<button (click)="addReview()" [disabled]="isEditing">Add Review</button>
+<br/>
+<button class="btn btn-primary" (click)="addReview()" [disabled]="isEditing">Add Review</button>
+
+
+
 <form *ngIf="isEditing" [formGroup]="reviewForm" class="form-group">
-    <textarea formControlName="comment"></textarea>
-    <input formControlName="rating" />
-    <button (click)="saveReview()">OK</button>
+
+    <textarea class="form-control ctrl-space" rows="5" formControlName="comment"></textarea>
+    <br/>
+    <label for="role">Rating</label>
+    <select formControlName="rating" class="form-control" name="rating" id="rating">
+            <option value="1">1 - Excellent</option>
+            <option value="2">2 - Good</option>
+            <option value="3">3 - Pretty Good</option>
+            <option value="4">4 - Bad</option>
+        </select>
+    <!--<input class="form-control ctrl-space" formControlName="rating" />    -->
+    <button class="btn btn-primary ctrl-space" (click)="saveReview()">OK</button>
+
+
 </form>

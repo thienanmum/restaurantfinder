@@ -34,6 +34,7 @@ import { NgRedux, NgReduxModule } from 'ng2-redux';
 import { IAppState, appStore } from './app.store';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './app.interceptor';
+import { RatingPipe } from './_directives/rating.pipe';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { AuthInterceptor } from './app.interceptor';
     RestaurantviewComponent,
     ReviewComponent,
     LogoutComponent,
-    HasRoleDirective
+    HasRoleDirective,
+    RatingPipe
   ],
   imports: [
     BrowserModule, FormsModule, ReactiveFormsModule, 
