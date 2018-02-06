@@ -26,7 +26,9 @@ export class RestaurantviewComponent implements OnInit {
         route.params.subscribe(params => { this.restaurantId = params['id'] });
         this.service.getRestaurantById(this.restaurantId).subscribe(data => {
             this.restaurant = data;
+               console.log(this.restaurant.rating);
         })
+     
     }
 
     ngOnInit() {
