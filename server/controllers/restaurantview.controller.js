@@ -2,13 +2,14 @@ var express = require("express");
 var router = express.Router();
 var fs = require("fs");
 
-router.get("/images", readImage);
+router.get("/images/:filename", readImage);
 
-function readImage(req, res){
-    console.log("nhu");
-    fs.readFile('./public/images/google.png', (err, data) => {
-        if(err) throw err;
-        console.log("go here");
+function readImage(req, res){   
+    console.log(req.params.filename);
+    
+    //fs.readFile('./public/images/google.png', (err, data) => {
+    fs.readFile('./public/images/' + req.params.filename, (err, data) => {
+        if(err) throw err;        
         res.writeHead(200, {'Content-Type': 'image/jpeg'});
         res.end(data); 
     });       

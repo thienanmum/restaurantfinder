@@ -15,3 +15,7 @@ div.row{
 div#rightSection{
     margin-left: 30px;
 }
+
+agm-map {
+    height: 300px;
+}
