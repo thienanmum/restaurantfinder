@@ -1,3 +1,12 @@
+<!--
+Filename: c:\Users\dnam8\Desktop\project\trunk\client\src\app\admin\restaurantlist.component.html
+Path: c:\Users\dnam8\Desktop\project\trunk\client
+Created Date: Monday, February 5th 2018, 7:56:30 pm
+Author: KyNguyen
+
+Copyright (c) 2018 Your Company
+-->
+
 <table class="table table-bordered">
   <thead>
     <tr>
@@ -8,15 +17,18 @@
       <th scope="col">Rating</th>
     </tr>
   </thead>
-  <tbody *ngFor = "let item of restaurantList; let num = index">
+  <tbody *ngFor="let item of restaurantList; let num = index">
     <tr>
+      <!-- num is the order number -->
       <th scope="row">{{num +1}}</th>
-      <td><a [routerLink]="[item._id]">{{item.name}}</a></td>
+      <td>
+        <a [routerLink]="[item._id]">{{item.name}}</a>
+      </td>
       <td>{{item.address.city}}</td>
       <td>{{item.dishes}}</td>
       <td>Good</td>
     </tr>
-   </tbody>
+  </tbody>
 </table>
 <button class="btn btn-primary" (click)="navigateAdd()">Add</button>
 <div class="container">
