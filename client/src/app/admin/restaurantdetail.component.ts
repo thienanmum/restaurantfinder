@@ -108,6 +108,12 @@ export class RestaurantdetailComponent implements OnInit {
     }
   }
 
+  //validator if add new restaurant the Delete button should not appear
+  visbileDelete(): { [s: string]: boolean } {
+    if (this.id == 0) return { error: true };
+    return null;
+  }
+
   // destroy subscription to release memory
   inOnDestroy() {
     this.subscription.unsubscribe();
