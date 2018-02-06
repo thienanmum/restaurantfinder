@@ -8,11 +8,13 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { tokenNotExpired, JwtHelper } from 'angular2-jwt';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { NgRedux } from 'ng2-redux';
 
 import { User } from '../_models/user';
 import { appConfig } from '../app.config';
-import { Router } from '@angular/router';
-
+import { generateAlertAction } from '../app.store';
+import { IAppState } from '../app.store';
 
 interface Credentials {username: string, password: string}
 
@@ -30,18 +32,22 @@ export class AuthService {
 
     jwtHelper: JwtHelper = new JwtHelper();
 
-    constructor(private http: HttpClient, private router: Router) { }
+    constructor(private http: HttpClient, private router: Router, private ngRedux: NgRedux<IAppState>) { }
 
     login(credentials:Credentials) {
         this.http.post<{token:string}>(appConfig.apiUrl + 'users/authenticate', credentials)
-            .subscribe(data => { 
-                    console.log("Login successfully: " + JSON.stringify(this.currentUser));                    
+            .subscribe(data => {                     
                     localStorage.setItem('id_token', data.token);
                     this.userChanged.emit(this.currentUser);
-                    this.router.navigate(['home']);                    
+                    console.log("Login successfully: " + JSON.stringify(this.currentUser));
+                    this.router.navigate(['home']);   
+                    // this.ngRedux.dispatch(generateAlertAction(""));
+                    // this.ngRedux.dispatch({type: "ACT_ALERT", data: ""});           
                 }, 
                 error => {
-                    console.log(error);                      
+                    // this.ngRedux.dispatch(generateAlertAction("Invalid username or password."));
+                    // this.ngRedux.dispatch({type: "ACT_ALERT", data: "Invalid username or password"});
+                    console.log(error);                  
                 });
     }
 
@@ -51,5 +57,6 @@ export class AuthService {
 
     logout() {
         localStorage.removeItem('id_token');
+        this.userChanged.emit(null);
     }
 }

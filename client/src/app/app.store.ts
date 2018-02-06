@@ -9,9 +9,15 @@ export interface IAppState {
     alertMsg: string
 }
 
-export const store = createStore(reducer);
+export const appStore = createStore(reducer);
 
-export const ACT_ALERT = "ACT_ALERT";
+const ACT_ALERT = "ACT_ALERT";
+export function generateAlertAction(msg: string): Action {
+    return {type: ACT_ALERT, data: msg};
+}
+function alert(state:IAppState, action:Action): IAppState {
+    return Object.assign({}, state, {alertMsg: action.data})
+}
 
 function reducer(state: IAppState, action: Action) {
     switch(action.type) {
@@ -19,7 +25,3 @@ function reducer(state: IAppState, action: Action) {
         default: return state;
     }
 } 
-
-function alert(state:IAppState, action:Action): IAppState {
-    return Object.assign({}, state, {alertMsg: action.data})
-}

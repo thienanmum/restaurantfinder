@@ -30,6 +30,8 @@ import { ReviewComponent } from './review/review.component';
 import { LogoutComponent } from './logout.component';
 import { HasRoleDirective } from './_directives/has-role.directive';
 import { GeolocationService } from './_services/geolocation.service';
+import { NgRedux, NgReduxModule } from 'ng2-redux';
+import { IAppState, appStore } from './app.store';
 
 @NgModule({
   declarations: [
@@ -47,10 +49,14 @@ import { GeolocationService } from './_services/geolocation.service';
   ],
   imports: [
     BrowserModule, FormsModule, ReactiveFormsModule, 
-    mainRoutes, HttpClientModule, 
+    mainRoutes, HttpClientModule, NgReduxModule,
     AgmCoreModule.forRoot({ apiKey: appConfig.googleAPIKey })
   ],
   providers: [UserService, AuthService, AuthGuard, SearchService,RestaurantService, GeolocationService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+    constructor(private ngRedux: NgRedux<IAppState>) {
+        ngRedux.provideStore(appStore);
+    }
+}

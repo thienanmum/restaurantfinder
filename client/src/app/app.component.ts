@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core/';
+import { select } from 'ng2-redux';
+
 import { AuthService } from './_services/auth.service';
 
 @Component({
@@ -10,5 +12,8 @@ import { AuthService } from './_services/auth.service';
 })
 export class AppComponent {
     title = 'app';
-    constructor(private authService: AuthService){}
+    @select('alertMsg') error: string;
+    constructor(private authService: AuthService){
+
+    }
 }

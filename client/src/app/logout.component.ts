@@ -10,18 +10,20 @@ import { AuthService } from './_services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-logout',
-  template: ``,
-  styles: []
+    selector: 'app-logout',
+    template: ``,
+    styles: []
 })
 export class LogoutComponent implements OnInit {
 
-  constructor(private authService: AuthService, private router: Router) { }
+    constructor(private authService: AuthService, private router: Router) { }
 
-  ngOnInit() {
-      console.log("Logout");
-      this.authService.logout();
-      this.router.navigate(['login']);
-  }
+    ngOnInit() {
+        console.log("Logout");
+
+        // Call logout after navigate completed to avoid this error:
+        // ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked.
+        this.router.navigate(['login']).then(a => this.authService.logout());
+    }
 
 }
