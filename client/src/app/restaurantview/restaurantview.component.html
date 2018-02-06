@@ -1,27 +1,32 @@
 <form>
-  <div class="row">
-      <div class="col-sm-6">
-          <!-- <img src="http://localhost:3000/restaurant/view/images" alt="map"/>           -->
-          <agm-map [latitude]="restaurant?.location[1]" [longitude]="restaurant?.location[0]">
+    <div class="row">
+        <div class="col-sm-6">
+            <!-- <img src="http://localhost:3000/restaurant/view/images" alt="map"/>           -->
+            <agm-map [latitude]="restaurant?.location[1]" [longitude]="restaurant?.location[0]">
                 <agm-marker [latitude]="restaurant?.location[1]" [longitude]="restaurant?.location[0]">
                     <agm-info-window>
-                      <h3><strong>Howdy!</strong></h3>
-                      <p>You are here!</p>
+                        <h3>
+                            <strong>Howdy!</strong>
+                        </h3>
+                        <p>You are here!</p>
                     </agm-info-window>
-                  </agm-marker>
+                </agm-marker>
             </agm-map>
-      </div>
-      <div id="rightSection">
-          <div class="row">        
-            <div class="container" *ngFor="let img of images">
-                <img  src="http://localhost:3000/restaurant/view/images/{{img}}" alt="map"/>
-            </div>                   
-                    
-          </div>          
-          <h3>{{restaurant?.name}}</h3>
-          <p>{{restaurant?.address}}</p>
-          
-      </div>
-      
-  </div>  
+        </div>
+        <div id="rightSection">
+            <div class="row">
+                <div class="container" *ngFor="let img of images">
+                    <img src="http://localhost:3000/restaurant/view/images/{{img}}" alt="map" />
+                </div>
+
+            </div>
+            <h3>{{restaurant?.name}}</h3>
+            <p>{{restaurant?.address}}</p>
+
+        </div>
+
+    </div>
+    <div class="row">
+        <app-review [restaurant]="restaurant"></app-review>
+    </div>
 </form>

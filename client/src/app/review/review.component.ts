@@ -8,6 +8,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { AuthService } from '../_services/auth.service';
+import { RestaurantService } from '../_services/restaurant.service';
+import { Restaurant } from '../_models/restaurant';
 
 @Component({
   selector: 'app-review',
@@ -15,11 +17,12 @@ import { AuthService } from '../_services/auth.service';
   styleUrls: ['./review.component.css']
 })
 export class ReviewComponent implements OnInit {
-    @Input() reviews: any[];
+    @Input() restaurant: Restaurant;
     reviewForm: FormGroup;
     isEditing: boolean = false;
 
-    constructor(private fb: FormBuilder, private authService: AuthService) { 
+    constructor(private fb: FormBuilder, private authService: AuthService, 
+        private restaurantService: RestaurantService) { 
         this.reviewForm = fb.group({
             comment:[''],
             rating: [''],
@@ -38,8 +41,10 @@ export class ReviewComponent implements OnInit {
         const review = this.reviewForm.value;
         console.log(review);
         review.username = this.authService.currentUser.username;
-        if (!this.reviews) this.reviews = [];
-        this.reviews.push(review);
+        if (this.restaurant && !this.restaurant.reviews) this.restaurant.reviews = [];
+        this.restaurant.reviews.push(review);
         this.isEditing = false;
+        this.restaurantService.updateRestaurant(this.restaurant._id, this.restaurant)
+            .subscribe(data => console.log("Insert review: " + JSON.stringify(review)));
     }
 }

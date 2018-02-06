@@ -5,12 +5,12 @@ Author: annguyen
 Description:
 -->
 
-<div *ngFor="let item of reviews">
+<div *ngFor="let item of restaurant?.reviews">
     <div>{{item.username}} - {{item.rating}}</div>
     <div>{{item.comment}}</div>
 </div>
 <button (click)="addReview()" [disabled]="isEditing">Add Review</button>
-<form *ngIf="isEditing" [formGroup]="reviewForm">
+<form *ngIf="isEditing" [formGroup]="reviewForm" class="form-group">
     <textarea formControlName="comment"></textarea>
     <input formControlName="rating" />
     <button (click)="saveReview()">OK</button>

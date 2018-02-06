@@ -5,30 +5,30 @@ import { RestaurantService } from '../_services/restaurant.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'app-restaurantview',
-  templateUrl: './restaurantview.component.html',
-  styleUrls: ['./restaurantview.component.css']
+    selector: 'app-restaurantview',
+    templateUrl: './restaurantview.component.html',
+    styleUrls: ['./restaurantview.component.css']
 })
 export class RestaurantviewComponent implements OnInit {
 
-  myForm: FormGroup;
-  restaurant: any;
-  restaurantId: string;  
-  
-  constructor(private route: ActivatedRoute, private service: RestaurantService, private formBuilder: FormBuilder) { 
-       
-    route.params.subscribe(params => {this.restaurantId = params['id']});
+    myForm: FormGroup;
+    restaurant: any;
+    restaurantId: string;
 
-    this.service.getRestaurantById(this.restaurantId).subscribe(data => {
-      this.restaurant = data;   
-      
-    })  
-    
+    constructor(private route: ActivatedRoute, private service: RestaurantService, private formBuilder: FormBuilder) {
 
-  }
+        route.params.subscribe(params => { this.restaurantId = params['id'] });
 
-  ngOnInit() {
-    
-  }
+        this.service.getRestaurantById(this.restaurantId).subscribe(data => {
+            this.restaurant = data;
+
+        })
+
+
+    }
+
+    ngOnInit() {
+
+    }
 
 }
