@@ -20,14 +20,10 @@ import {
 import { Observable } from "rxjs/Rx";
 import { RestaurantService } from '../_services/restaurant.service';
 import { Router, ActivatedRoute } from '@angular/router';
-<<<<<<< HEAD
 import {Subscription} from "rxjs/Rx";
 import { GeolocationService } from '../_services/geolocation.service';
 import { Address } from '../_models/address';
 import { Coordinates } from '../_models/coordinates';
-=======
-import { Subscription } from "rxjs/Rx";
->>>>>>> 7d43cd651cb990421fcd234087716c9791c9c4fe
 
 @Component({
   selector: 'app-restaurantdetail',
@@ -42,14 +38,9 @@ export class RestaurantdetailComponent implements OnInit {
   private restaurantDetail;
   private location: Coordinates;
 
-<<<<<<< HEAD
   constructor(private formBuilder: FormBuilder, private restaurantService: RestaurantService, 
     private router: Router, private route: ActivatedRoute, 
     private geoService: GeolocationService, private zone: NgZone) {
-=======
-  constructor(private formBuilder: FormBuilder, private restaurantService: RestaurantService, private router: Router, private route: ActivatedRoute) {
-    // initial form with empty string
->>>>>>> 7d43cd651cb990421fcd234087716c9791c9c4fe
     this.myForm = formBuilder.group({
       'name': new FormControl('', [Validators.required, Validators.minLength(3)]),
       'address': new FormGroup({
@@ -71,7 +62,6 @@ export class RestaurantdetailComponent implements OnInit {
       });;
     }
     this.myForm.value['dishes'] = dishes;
-<<<<<<< HEAD
     this.myForm.value['location'] = [this.location.longitude, this.location.latitude];
      if(this.id == 0){
         this.restaurantService.addRestaurant(this.myForm.value)
@@ -81,17 +71,6 @@ export class RestaurantdetailComponent implements OnInit {
         .subscribe(data => {console.log("update the old restaurant"); this.router.navigate(['restaurant'])}, err => console.log(err));
      }
 
-=======
-    //if the id in URL is equal  it meant add new restaurant
-    if (this.id == 0) {
-      this.restaurantService.addRestaurant(this.myForm.value)
-        .subscribe(data => { console.log("add new restaurant"); this.router.navigate(['restaurant']) }, err => console.log(err));
-    // if the id is not equal 0 it mean update the restaurant
-    } else {
-      this.restaurantService.updateRestaurant(this.id, this.myForm.value)
-        .subscribe(data => { console.log("update the old restaurant"); this.router.navigate(['restaurant']) }, err => console.log(err));
-    }
->>>>>>> 7d43cd651cb990421fcd234087716c9791c9c4fe
   }
 
   // Load Restaurant detail into Form
@@ -121,17 +100,6 @@ export class RestaurantdetailComponent implements OnInit {
           });
       }
     });
-<<<<<<< HEAD
-
-   }
-    });
-
-    this.myForm.valueChanges.subscribe(data => {
-        // console.log(data)
-    });
-    
-=======
->>>>>>> 7d43cd651cb990421fcd234087716c9791c9c4fe
   }
 
 
