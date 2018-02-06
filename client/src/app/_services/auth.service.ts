@@ -5,7 +5,7 @@
  * Description: Authenticate the user by providing username and password.
  */
 
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { tokenNotExpired, JwtHelper } from 'angular2-jwt';
 import { HttpClient } from '@angular/common/http';
 
@@ -18,6 +18,7 @@ interface Credentials {username: string, password: string}
 
 @Injectable()
 export class AuthService {
+    userChanged: EventEmitter<User> = new EventEmitter();
     get currentUser(): User {
         if (this.loggedIn()) {
             const token = localStorage.getItem('id_token');
@@ -34,10 +35,10 @@ export class AuthService {
     login(credentials:Credentials) {
         this.http.post<{token:string}>(appConfig.apiUrl + 'users/authenticate', credentials)
             .subscribe(data => { 
-                    console.log(data);
+                    console.log("Login successfully: " + JSON.stringify(this.currentUser));                    
                     localStorage.setItem('id_token', data.token);
-                    console.log("Login successfully: " + JSON.stringify(this.currentUser));
-                    this.router.navigate(['home']);
+                    this.userChanged.emit(this.currentUser);
+                    this.router.navigate(['home']);                    
                 }, 
                 error => {
                     console.log(error);                      

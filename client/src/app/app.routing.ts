@@ -16,8 +16,8 @@ const MAIN_ROUTES: Routes = [
     {path:"logout", component:LogoutComponent},
     {path:"home", component:HomeComponent, canActivate: [AuthGuard]},
     {path:"register", component:UserComponent},
-    {path:"restaurant/search", component: RestaurantsearchComponent},
-    {path:"restaurant/view/:id", component: RestaurantviewComponent},
+    {path:"restaurant/search", component: RestaurantsearchComponent, canActivate: [AuthGuard]},
+    {path:"restaurant/view/:id", component: RestaurantviewComponent, canActivate: [AuthGuard]},
     {path:"user/:id", component:UserComponent, canActivate: [AuthGuard]},
     {path:"restaurant/:id", component:RestaurantdetailComponent, canActivate: [AuthGuard]},
     {path:"restaurant", component:RestaurantlistComponent, canActivate: [AuthGuard]}
