@@ -32,6 +32,7 @@ import { HasRoleDirective } from './_directives/has-role.directive';
 import { GeolocationService } from './_services/geolocation.service';
 import { NgRedux, NgReduxModule } from 'ng2-redux';
 import { IAppState, appStore } from './app.store';
+import {RatingPipe} from './_directives/rating.pipe';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { IAppState, appStore } from './app.store';
     RestaurantviewComponent,
     ReviewComponent,
     LogoutComponent,
-    HasRoleDirective
+    HasRoleDirective,
+    RatingPipe
   ],
   imports: [
     BrowserModule, FormsModule, ReactiveFormsModule, 

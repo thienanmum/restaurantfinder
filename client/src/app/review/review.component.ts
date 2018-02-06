@@ -5,7 +5,7 @@
  * Description: Show all reviews of a restaurant and allow user to add new review
  */
 
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Pipe, PipeTransform } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { AuthService } from '../_services/auth.service';
 import { RestaurantService } from '../_services/restaurant.service';
@@ -16,6 +16,7 @@ import { Restaurant } from '../_models/restaurant';
   templateUrl: './review.component.html',
   styleUrls: ['./review.component.css']
 })
+
 export class ReviewComponent implements OnInit {
     @Input() restaurant: Restaurant;
     reviewForm: FormGroup;

@@ -40,11 +40,14 @@ export class RestaurantService {
     addReview(restaurantId: string, restaurant: Restaurant) {
         // calculate the average rating of all reviews
         if (restaurant.reviews) {
-            let total:number = 0;
-            let count:number = 0;
+            console.log(restaurant.reviews);
+            var total:number = 0;
+            var count:number = 0;
             for (let item of restaurant.reviews) {
-                total += item.rating;
+                total += item.rating *1;
                 count ++;
+                console.log(total);
+                
             }
             restaurant.rating = Math.round(total / count);
         }
