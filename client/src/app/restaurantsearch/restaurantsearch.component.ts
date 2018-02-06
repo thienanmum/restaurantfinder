@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { SearchService } from '../_services/search.service';
 import { AgmCoreModule } from '@agm/core';
 import { GeolocationService } from '../_services/geolocation.service';
@@ -16,7 +16,7 @@ export class RestaurantsearchComponent implements OnInit {
   searchAddress: string; 
   currentCord: Coordinates;
   
-  constructor(private searchService: SearchService, private geoService: GeolocationService) { 
+  constructor(private searchService: SearchService, private geoService: GeolocationService, private zone: NgZone) { 
     this.geoService.getCurrentLocation().subscribe(cord =>{      
       this.currentCord = new Coordinates({
            latitude: cord.latitude,
@@ -32,8 +32,22 @@ export class RestaurantsearchComponent implements OnInit {
 
   onSubmit(){   
     this.searchService.getRestaurants(this.currentCord.longitude, this.currentCord.latitude, this.searchDishes).subscribe(data => {     
-      this.restaurants = data;      
+      console.log("long" + this.currentCord.longitude);
+      console.log("lat" + this.currentCord.latitude);
+      console.log("dishes" + this.searchDishes);
+        this.restaurants = data;      
     })
+  }
+
+  lookupAddress(address){    
+    this.geoService.getLocation2(address).subscribe(loc =>{
+        this.zone.run(() => {
+            this.currentCord = loc;
+            console.log(this.currentCord);
+        });
+        
+    })
+
   }
 
 }

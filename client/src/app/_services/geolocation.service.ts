@@ -42,19 +42,32 @@ export class GeolocationService  {
         console.log("Resolving address:" + address.fullAddress);
         let geocoder = new google.maps.Geocoder();
         return Observable.create(observer => {
-            geocoder.geocode( { 'address': address.fullAddress}, function(results, status) {
-                if (status == google.maps.GeocoderStatus.OK) {
-                    observer.next(new Coordinates({
-                        latitude:results[0].geometry.location.lat(),
-                        longitude: results[0].geometry.location.lng()
-                    }));
-                    observer.complete();                    
-                } else {
-                    console.log('Error - ', results, ' & Status - ', status);
-                    observer.next({});
-                    observer.complete();
-                }
+            geocoder.geocode( { 'address': address.fullAddress}, (results, status) =>{
+                this.processGeoCode(observer, results, status);
             });
         })
+    }
+    
+    public getLocation2(fullAddress: string): Observable<Coordinates> {        
+        let geocoder = new google.maps.Geocoder();
+        return Observable.create(observer => {
+            geocoder.geocode({ 'address': fullAddress}, (results, status) =>{
+                this.processGeoCode(observer, results, status);
+            })
+        });
+    }
+
+    private processGeoCode(observer, results, status){      
+        if (status == google.maps.GeocoderStatus.OK) {
+            observer.next(new Coordinates({
+                latitude:results[0].geometry.location.lat(),
+                longitude: results[0].geometry.location.lng()
+            }));
+            observer.complete();                    
+        } else {
+            console.log('Error - ', results, ' & Status - ', status);
+            observer.next({});
+            observer.complete();
+        }               
     }
 }

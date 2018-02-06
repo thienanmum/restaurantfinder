@@ -8,7 +8,7 @@ var service = {};
 // }
 
 service.getNearRestaurants = function(currentCord){     
-    return Restaurant.find({location: {$near: currentCord}}).limit(2);    
+    return Restaurant.find({location: {$near: currentCord}}).limit(5);    
 }
 
 // service.getRestaurantsWithDishes = function(dishes){      
