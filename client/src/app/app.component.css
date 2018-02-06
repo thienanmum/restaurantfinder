@@ -8,3 +8,11 @@ background-color: #E6E6FA;
 .nav-item{
     font-weight: bold;
 }
+
+h1{
+    text-align: center;
+    color: blue;
+    margin: 20px;
+    font-family: tahoma;
+
+}
