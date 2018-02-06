@@ -15,6 +15,7 @@ service.getRestaurantById = function(id){
     return Restaurant.findById(id);    
 }
 service.addNewRestaurant = function(restaurant){ 
+    restaurant._id = null;
     return Restaurant.create(restaurant);    
 }
 

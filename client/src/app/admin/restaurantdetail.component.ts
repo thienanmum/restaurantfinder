@@ -39,7 +39,7 @@ export class RestaurantdetailComponent implements OnInit {
       'dishes': new FormControl('', [Validators.required])
     });
 
-    this.subscription = route.params.subscribe((param:any) => this.id = param['id']);
+   
   };
 
 
@@ -53,7 +53,7 @@ export class RestaurantdetailComponent implements OnInit {
     });;
     }
     this.myForm.value['dishes'] = dishes;
-     if(this.id ===0){
+     if(this.id == 0){
         this.restaurantService.addRestaurant(this.myForm.value)
         .subscribe(data => {console.log("add new restaurant"); this.router.navigate(['restaurant'])}, err => console.log(err));
      }else{
@@ -64,8 +64,9 @@ export class RestaurantdetailComponent implements OnInit {
 
   // Load Restaurant detail into Form
   ngOnInit() {
-  
-    if(this.id !=="0"){
+     this.subscription = this.route.params.subscribe((param:any) => {
+     this.id = param['id'];
+     if(this.id !=="0"){
      console.log(this.id)
       this.restaurantService.getRestaurantById(this.id).subscribe(
       data=>{
@@ -85,6 +86,8 @@ export class RestaurantdetailComponent implements OnInit {
           });
     });
    }
+    });
+    
   }
 
 
@@ -99,7 +102,6 @@ delete(){
     });
   }
 }
-
 
 // destroy subscription to release memory
   inOnDestroy(){
