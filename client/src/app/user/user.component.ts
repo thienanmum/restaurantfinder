@@ -32,7 +32,7 @@ export class UserComponent implements OnInit {
             confirmPassword: new FormControl('', Validators.required),
         }, matchPassword),        
         email: new FormControl('', [Validators.required, Validators.email]),
-        role: new FormControl('', Validators.required)
+        role: new FormControl('guest', Validators.required)
     });
     subscription: Subscription;
     constructor(private userService: UserService, private activatedRoute: ActivatedRoute, private router: Router) { }

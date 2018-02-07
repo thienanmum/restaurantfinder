@@ -27,17 +27,17 @@ Description: Template for UserComponent.
         <div class="form-group">
             <label for="password">Password</label>
             <input type="password" formControlName="password" class="form-control" name="password" id="password">
-            <!-- <div class="error" *ngIf="!userForm.get('pwdGroup').controls['password'].valid">Required</div> -->
+            <div class="error" *ngIf="!userForm.get('pwdGroup').get('password').valid">Required</div>
         </div>
         <div class="form-group">
-            <label for="cof">Confirm Password</label>
+            <label for="confirmPassword">Confirm Password</label>
             <input type="password" formControlName="confirmPassword" class="form-control" name="confirmPassword" id="confirmPassword">
-            <!-- <div class="error" *ngIf="userForm.get('pwdGroup').controls['confirmPassword'].hasError('required')">Required</div>
-            <div class="error" *ngIf="userForm.get('pwdGroup').controls['confirmPassword'].hasError('MatchPassword')">Password not match</div> -->
+            <div class="error" *ngIf="userForm.get('pwdGroup').get('confirmPassword').hasError('required')">Required</div>
+            <div class="error" *ngIf="userForm.get('pwdGroup').get('confirmPassword').hasError('MatchPassword')">Password not match</div>
         </div>
     </div>
     <div class="form-group">
-        <label for="cof">Email</label>
+        <label for="email">Email</label>
         <input type="text" formControlName="email" class="form-control" name="email" id="email">
         <div class="error" *ngIf="!userForm.controls['email'].valid">Required and is email.</div>
     </div>
