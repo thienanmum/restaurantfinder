@@ -14,7 +14,7 @@ var restaurantSchema = new mongoose.Schema({
     dishes: [String],
     rating: Number,
     reviews: [{username: String, comment: String, rating: Number}],
-    images: [String]
+    image: String
 }, {collection: "restaurants"})
 
 restaurantSchema.index({location: '2d'});
