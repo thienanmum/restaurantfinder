@@ -6,6 +6,7 @@
  */
 
 export const appConfig = {
-    apiUrl: 'http://localhost:3000/',
+    // apiUrl: 'http://localhost:3000/',
+    apiUrl:'https://restaurantfindermwa.herokuapp.com/',
     googleAPIKey: 'AIzaSyCttuNrA7m8X_dgzjnuJdafPhrBSGEAxnU'
 };
