@@ -16,7 +16,9 @@ declare var google: any;
 export class GeolocationService  {
 
     constructor() {}
-    
+
+    //Code is refered to this link
+    //https://gist.github.com/vunguyenhung/792bc4cddcfc1f33b90e32834b43d4d1
     public getCurrentLocation(): Observable<Coordinates> {
         return Observable.create(observer => {
             if (window.navigator && window.navigator.geolocation) {
